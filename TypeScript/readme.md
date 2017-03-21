@@ -21,3 +21,5 @@ tsc helloworld.ts
 - Shift+Alt+F: formats the whole document. Ctrl+K Ctrl+F: formats the currently selected source code.
 
 - Alt: Show menu toolbar.
+
+## [TypeScript loader for webpack](https://github.com/TypeStrong/ts-loader)
