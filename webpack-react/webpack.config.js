@@ -1,10 +1,11 @@
 'use strict';
 
 module.exports = {
+    context: __dirname,
     entry: './src/hello.tsx',
-    output: { 
-        filename: "bundle.js",
-        path: __dirname + "/dist"
+    output: {
+        path: __dirname + "/dist",
+        filename: "bundle.js",        
     },
     module: {
         rules: [

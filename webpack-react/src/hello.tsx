@@ -3,7 +3,7 @@ import * as ReactDOM from "react-dom";
 
 import { Hello } from "./components/Hello";
 import { Profile } from "./components/Profile";
-import { Settings } from "./components/Settings";
+import { PersonalSettings } from "./components/PersonalSettings";
 
 ReactDOM.render(
     <Hello compiler="TypeScript" framework="React @Bill" />,
@@ -15,34 +15,7 @@ ReactDOM.render(
     document.getElementById('component_combine')
 );
 
-
-
-// {['B', 'C']}
-
 ReactDOM.render(
-    <Settings results={[{'id': 'id-1', 'text': 'Hi - 1'}, {'id': 'id-2', 'text': 'Hi - 2'}]} />,
+    <PersonalSettings items={['Account', 'Emails', 'Notifications']} />,
     document.getElementById('component_loop')
 );
-
- /*{
-    var items = {};
-    this.props.results = [
-        {
-            "id": 1,
-            "text": "Hi -1"
-        }
-    ];
-
-    this.props.results.forEach((result) => {
-        // If result.id can look like a number (consider short hashes), then
-        // object iteration order is not guaranteed. In this case, we add a prefix
-        // to ensure the keys are strings.
-        items['result-' + result.id] = <li>{result.text}</li>;
-    });
-
-    return (
-        <ol>
-            {items}
-        </ol>
-    );
-};*/
