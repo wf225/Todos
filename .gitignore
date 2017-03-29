@@ -1,3 +1,5 @@
-webpack-react/node_modules/
 TypeScript/build/
-webpack-react/dist/
+ts-react-webpack/node_modules/
+ts-react-webpack/dist/
+js-react-webpack/node_modules/
+js-react-webpack/dist/
