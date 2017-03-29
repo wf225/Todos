@@ -6,7 +6,7 @@ module.exports = {
     output: {
         path: path.join(__dirname, './dist'),
         filename: 'bundle.js'
-    },  
+    },
     module: {
         rules: [
             {
@@ -19,6 +19,10 @@ module.exports = {
                         presets: ['env', 'react']
                     }
                 }
+            },
+            {
+                test: /\.css$/,
+                use: ['style-loader', 'css-loader']
             }
         ]
     },
