@@ -31,6 +31,9 @@ export class TodoItem extends React.Component {
     }
 
     handleKeyDown(event) {
+        console.log(event.which);
+        console.log(this.props.todo.title);
+        
         if (event.which === ESCAPE_KEY) {
             this.setState({ editText: this.props.todo.title });
             this.props.onCancel(event);
