@@ -50,9 +50,8 @@ export class TodoItem extends React.Component {
 
     componentDidUpdate(prevProps) {
         if (!prevProps.editing && this.props.editing) {
-            let node = ReactDOM.findDOMNode(this.refs.editField);
-            node.focus();
-            node.setSelectionRange(node.value.length, node.value.length);
+            this.editField.focus();
+            this.editField.setSelectionRange(this.editField.value.length, this.editField.value.length);
         }
     }
 
@@ -76,7 +75,7 @@ export class TodoItem extends React.Component {
                     <button className="destroy" onClick={this.props.onDestroy} />
                 </div>
                 <input
-                    ref="editField"
+                    ref={(input) => { this.editField = input; }}
                     className="edit"
                     value={this.state.editText}
                     onBlur={this.handleSubmit}

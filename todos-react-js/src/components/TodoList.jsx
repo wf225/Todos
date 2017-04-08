@@ -7,6 +7,7 @@ import { ALL_TODOS, ACTIVE_TODOS, COMPLETED_TODOS, ENTER_KEY } from "./Utils";
 export class TodoList extends React.Component {
   constructor(props) {
     super(props);
+    this.props.model.subscribe(() => this.setState({ todos: this.props.model.todos }));
 
     this.handleChange = this.handleChange.bind(this);
     this.handleNewTodoKeyDown = this.handleNewTodoKeyDown.bind(this);
