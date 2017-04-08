@@ -12,11 +12,7 @@ ReactDOM.render(
 );
 
 let model = new TodoModel('react-todos');
-function app_render() {
-    ReactDOM.render(
-        <TodoList model={model} />,
-        document.getElementById('container')
-    );
-}
-model.subscribe(app_render);
-app_render();
+ReactDOM.render(
+    <TodoList model={model} />,
+    document.getElementById('container')
+);
