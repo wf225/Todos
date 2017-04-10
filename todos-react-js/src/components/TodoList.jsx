@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component, PropTypes } from 'react'
 import { TodoItem } from "./TodoItem";
 import { TodoFooter } from "./TodoFooter";
 import { Utils } from "./Utils";
@@ -7,7 +7,10 @@ import { ALL_TODOS, ACTIVE_TODOS, COMPLETED_TODOS, ENTER_KEY } from "./Utils";
 export class TodoList extends React.Component {
   constructor(props) {
     super(props);
-    this.props.model.subscribe(() => this.setState({ todos: this.props.model.todos }));
+
+    this.props.model.subscribe(() =>
+      this.setState({ todos: this.props.model.todos })
+    );
 
     this.handleChange = this.handleChange.bind(this);
     this.handleNewTodoKeyDown = this.handleNewTodoKeyDown.bind(this);
@@ -181,5 +184,8 @@ export class TodoList extends React.Component {
       </div>
     );
   }
+}
 
+TodoList.propTypes = {
+    model: PropTypes.object.isRequired
 }

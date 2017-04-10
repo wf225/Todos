@@ -23,7 +23,7 @@ describe('TodoModel tests', () => {
     test('add todo item', () => {        
         expect(model.key).toEqual("react-todos");
         expect(model.todos.length).toEqual(2);
-        expect(model.onChanges.length).toEqual(1);
+        expect(model.listeners.length).toEqual(1);
 
         expect(model.todos[0].title).toEqual("Todo-item-1");
         expect(model.todos[0].completed).toEqual(false);

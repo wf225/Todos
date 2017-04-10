@@ -6,16 +6,19 @@ export class TodoModel {
     constructor(key) {
         this.key = key;
         this.todos = Utils.store(key);
-        this.onChanges = [];
+        this.listeners = [];
     }
 
-    subscribe(onChange) {
-        this.onChanges.push(onChange);
+    subscribe(listener) {
+        this.listeners.push(listener);
+        return () => {
+            this.listeners = this.listeners.filter(l => l !== listener);
+        }
     }
 
     inform() {
         Utils.store(this.key, this.todos);
-        this.onChanges.forEach((fn) => { fn(); });
+        this.listeners.forEach((fn) => { fn(); });
     }
 
     addTodo(title) {

@@ -1,5 +1,5 @@
 'use strict';
-import React from 'react'
+import React, { Component, PropTypes } from 'react'
 import classNames from 'classnames'
 import { ENTER_KEY, ESCAPE_KEY } from "./Utils";
 
@@ -12,7 +12,9 @@ export class TodoItem extends React.Component {
         this.handleKeyDown = this.handleKeyDown.bind(this);
         this.handleChange = this.handleChange.bind(this);
 
-        this.state = { editText: this.props.todo.title };
+        this.state = {
+            editText: this.props.todo.title
+        }
     }
 
     handleSubmit(event) {
@@ -33,7 +35,7 @@ export class TodoItem extends React.Component {
     handleKeyDown(event) {
         console.log(event.which);
         console.log(this.props.todo.title);
-        
+
         if (event.which === ESCAPE_KEY) {
             this.setState({ editText: this.props.todo.title });
             this.props.onCancel(event);
@@ -85,4 +87,13 @@ export class TodoItem extends React.Component {
             </li>
         );
     }
+}
+
+TodoItem.propTypes = {
+    todo: PropTypes.object.isRequired,
+    editing: PropTypes.bool.isRequired,
+    onSave: PropTypes.func.isRequired,
+    onDestroy: PropTypes.func.isRequired,
+    onEdit: PropTypes.func.isRequired,
+    onCancel: PropTypes.func.isRequired
 }
