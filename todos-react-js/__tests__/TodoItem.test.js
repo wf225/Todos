@@ -8,7 +8,7 @@ import sinon from 'sinon';
 
 import { TodoModel } from '../src/components/TodoModel';
 import { TodoItem } from "../src/components/TodoItem";
-import { ENTER_KEY, ESCAPE_KEY } from "../src/components/Utils";
+import * as key from "../src/constants/Key"
 
 // Applies to all tests in this file
 beforeEach(() => {
@@ -76,21 +76,21 @@ describe('TodoItem tests', () => {
         let editbox = wrapper.find('input').filter('.edit').first();
 
         wrapper.props().todo.title = "Todo-item-1-update2";
-        editbox.simulate('keyDown', { key: "Enter", keyCode: ENTER_KEY, which: ENTER_KEY });
+        editbox.simulate('keyDown', { key: "Enter", keyCode: key.ENTER_KEY, which: key.ENTER_KEY });
         expect(wrapper.text()).toEqual("Todo-item-1-update2");
     });
 
     test('todo item escape keydown', () => {
         const editbox = wrapper.find('input').filter('.edit').first();
         wrapper.setState({ editText: "Todo-item-1-update3" });
-        editbox.simulate('keyDown', { key: "Esc", keyCode: ESCAPE_KEY, which: ESCAPE_KEY });
+        editbox.simulate('keyDown', { key: "Esc", keyCode: key.ESCAPE_KEY, which: key.ESCAPE_KEY });
         expect(todo.title).toEqual("Todo-item-1-update1");
     });
 
     test('todo item enter keydown', () => {
         const editbox = wrapper.find('input').filter('.edit').first();
         wrapper.setState({ editText: "Todo-item-1-update3" });
-        editbox.simulate('keyDown', { key: "Enter", keyCode: ENTER_KEY, which: ENTER_KEY });
+        editbox.simulate('keyDown', { key: "Enter", keyCode: key.ENTER_KEY, which: key.ENTER_KEY });
         expect(todo.title).toEqual("Todo-item-1-update3");
     });
 

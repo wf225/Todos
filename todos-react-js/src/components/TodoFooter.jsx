@@ -2,7 +2,7 @@
 import React from 'react'
 import classNames from 'classnames'
 import { Utils } from "./Utils";
-import { ALL_TODOS, ACTIVE_TODOS, COMPLETED_TODOS, ENTER_KEY } from "./Utils";
+import { TODOS_ALL, TODOS_ACTIVE, TODOS_COMPLETED, ENTER_KEY } from "../constants/TodoFilters";
 
 export class TodoFooter extends React.Component {
     constructor(props) {
@@ -23,33 +23,33 @@ export class TodoFooter extends React.Component {
             );
         }
 
-        let nowShowing = this.props.nowShowing;
+        let show_filter = this.props.filter;
         return (
             <footer className="footer">
                 <span className="todo-count">
-                    <strong>{this.props.count}</strong> {activeTodoWord} left
-					</span>
+                    <strong>{this.props.count}</strong>{activeTodoWord} left
+				</span>
                 <ul className="filters">
                     <li>
                         <a
-                            href="#/"
-                            className={classNames({ selected: nowShowing === ALL_TODOS })}>
+                            onClick={() => this.props.onShow(TODOS_ALL)}
+                            className={classNames({ selected: show_filter === TODOS_ALL })}>
                             All
-							</a>
+						</a>
                     </li>
                     {' '}
                     <li>
                         <a
-                            href="#/active"
-                            className={classNames({ selected: nowShowing === ACTIVE_TODOS })}>
+                            onClick={() => this.props.onShow(TODOS_ACTIVE)}
+                            className={classNames({ selected: show_filter === TODOS_ACTIVE })}>
                             Active
 							</a>
                     </li>
                     {' '}
                     <li>
                         <a
-                            href="#/completed"
-                            className={classNames({ selected: nowShowing === COMPLETED_TODOS })}>
+                            onClick={() => this.props.onShow(TODOS_COMPLETED)}
+                            className={classNames({ selected: show_filter === TODOS_COMPLETED })}>
                             Completed
 							</a>
                     </li>

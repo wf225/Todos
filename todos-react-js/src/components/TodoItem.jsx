@@ -1,7 +1,7 @@
 'use strict';
 import React, { Component, PropTypes } from 'react'
 import classNames from 'classnames'
-import { ENTER_KEY, ESCAPE_KEY } from "./Utils";
+import * as key from "../constants/Key"
 
 export class TodoItem extends React.Component {
     constructor(props) {
@@ -36,10 +36,10 @@ export class TodoItem extends React.Component {
         console.log(event.which);
         console.log(this.props.todo.title);
 
-        if (event.which === ESCAPE_KEY) {
+        if (event.which === key.ESCAPE_KEY) {
             this.setState({ editText: this.props.todo.title });
             this.props.onCancel(event);
-        } else if (event.which === ENTER_KEY) {
+        } else if (event.which === key.ENTER_KEY) {
             this.handleSubmit(event);
         }
     }

@@ -1,8 +1,8 @@
 import React, { Component, PropTypes } from 'react'
 import { TodoItem } from "./TodoItem";
 import { TodoFooter } from "./TodoFooter";
-import { Utils } from "./Utils";
-import { ALL_TODOS, ACTIVE_TODOS, COMPLETED_TODOS, ENTER_KEY } from "./Utils";
+import { TODOS_ALL, TODOS_ACTIVE, TODOS_COMPLETED } from "../constants/TodoFilters";
+import * as key from "../constants/Key"
 
 export class TodoList extends React.Component {
   constructor(props) {
@@ -12,35 +12,25 @@ export class TodoList extends React.Component {
       this.setState({ todos: this.props.model.todos })
     );
 
-    this.handleChange = this.handleChange.bind(this);
-    this.handleNewTodoKeyDown = this.handleNewTodoKeyDown.bind(this);
-    this.toggleAll = this.toggleAll.bind(this);
-    this.toggle = this.toggle.bind(this);
-    this.destroy = this.destroy.bind(this);
-    this.edit = this.edit.bind(this);
-    this.save = this.save.bind(this);
-    this.cancel = this.cancel.bind(this);
-    this.clearCompleted = this.clearCompleted.bind(this);
-
     this.state = {
-      nowShowing: ALL_TODOS,
+      nowShowing: TODOS_ALL,
       editing: null,
       newTodo: ''
     };
   }
 
   componentDidMount() {
-    window.addEventListener('hashchange', () => {
-      let route = window.location.hash.substr(1);
-      switch (route) {
-        case "/active":
-          return this.setState({ nowShowing: ACTIVE_TODOS });
-        case "/completed":
-          return this.setState({ nowShowing: COMPLETED_TODOS });
-        default:
-          return this.setState({ nowShowing: ALL_TODOS });
-      }
-    })
+    // window.addEventListener('hashchange', () => {
+    //   let route = window.location.hash.substr(1);
+    //   switch (route) {
+    //     case "/active":
+    //       return this.setState({ nowShowing: ACTIVE_TODOS });
+    //     case "/completed":
+    //       return this.setState({ nowShowing: COMPLETED_TODOS });
+    //     default:
+    //       return this.setState({ nowShowing: ALL_TODOS });
+    //   }
+    // })
   }
 
   componentDidUpdate(prevProps) {
@@ -50,12 +40,16 @@ export class TodoList extends React.Component {
   }
 
 
+  handleShow(filter) {
+    this.setState({ nowShowing: filter });
+  }
+
   handleChange(event) {
     this.setState({ newTodo: event.target.value });
   }
 
   handleNewTodoKeyDown(event) {
-    if (event.keyCode !== ENTER_KEY) {
+    if (event.keyCode !== key.ENTER_KEY) {
       return;
     }
 
@@ -74,39 +68,67 @@ export class TodoList extends React.Component {
     this.props.model.toggleAll(checked);
   }
 
-  toggle(todoToToggle) {
+  handleToggle(todoToToggle) {
     this.props.model.toggle(todoToToggle);
   }
 
-  destroy(todo) {
+  handleDestroy(todo) {
     this.props.model.destroy(todo);
   }
 
-  edit(todo) {
+  handleEdit(todo) {
     this.setState({ editing: todo.id });
   }
 
-  save(todoToSave, text) {
+  handleSave(todoToSave, text) {
     this.props.model.save(todoToSave, text);
     this.setState({ editing: null });
   }
 
-  cancel() {
+  handleCancel() {
     this.setState({ editing: null });
   }
 
-  clearCompleted() {
+  handleClearCompleted() {
     this.props.model.clearCompleted();
   }
 
-  render() {
-    let todos = this.props.model.todos;
 
+  renderHeader() {
+    return (
+      <header>
+        <input
+          className="new-todo"
+          placeholder="What needs to be done?"
+          value={this.state.newTodo}
+          onKeyDown={this.handleNewTodoKeyDown.bind(this)}
+          onChange={this.handleChange.bind(this)}
+          autoFocus={true}
+        />
+      </header>
+    );
+  }
+
+  renderFooter(activeTodoCount, completedCount) {
+    if (activeTodoCount || completedCount) {
+      return (
+        <TodoFooter
+          count={activeTodoCount}
+          completedCount={completedCount}
+          onClearCompleted={this.handleClearCompleted.bind(this)}
+          filter={this.state.nowShowing}
+          onShow={this.handleShow.bind(this)}
+        />
+      );
+    }
+  }
+
+  renderTodoItems(todos, activeTodoCount) {
     let shownTodos = todos.filter(function (todo) {
       switch (this.state.nowShowing) {
-        case ACTIVE_TODOS:
+        case TODOS_ACTIVE:
           return !todo.completed;
-        case COMPLETED_TODOS:
+        case TODOS_COMPLETED:
           return todo.completed;
         default:
           return true;
@@ -118,42 +140,23 @@ export class TodoList extends React.Component {
         <TodoItem
           key={todo.id}
           todo={todo}
-          onToggle={this.toggle.bind(this, todo)}
-          onDestroy={this.destroy.bind(this, todo)}
-          onEdit={this.edit.bind(this, todo)}
+          onToggle={this.handleToggle.bind(this, todo)}
+          onDestroy={this.handleDestroy.bind(this, todo)}
+          onEdit={this.handleEdit.bind(this, todo)}
           editing={this.state.editing === todo.id}
-          onSave={this.save.bind(this, todo)}
-          onCancel={this.cancel}
+          onSave={this.handleSave.bind(this, todo)}
+          onCancel={this.handleCancel.bind(this)}
         />
       );
     }, this);
 
-    let activeTodoCount = todos.reduce(function (accumulator, currentTodo) {
-      return currentTodo.completed ? accumulator : accumulator + 1;
-    }, 0);
-
-    let completedCount = todos.length - activeTodoCount;
-    let app_header;
-    let app_main;
-    let app_footer;
-
-    if (activeTodoCount || completedCount) {
-      app_footer =
-        <TodoFooter
-          count={activeTodoCount}
-          completedCount={completedCount}
-          nowShowing={this.state.nowShowing}
-          onClearCompleted={this.clearCompleted}
-        />;
-    }
-
     if (todos.length) {
-      app_main = (
+      return (
         <section className="main">
           <input
             className="toggle-all"
             type="checkbox"
-            onChange={this.toggleAll}
+            onChange={this.toggleAll.bind(this)}
             checked={activeTodoCount === 0}
           />
           <ul className="todo-list">
@@ -162,30 +165,25 @@ export class TodoList extends React.Component {
         </section>
       );
     }
+  }
 
-    app_header = (
-      <header>
-        <input
-          className="new-todo"
-          placeholder="What needs to be done?"
-          value={this.state.newTodo}
-          onKeyDown={this.handleNewTodoKeyDown}
-          onChange={this.handleChange}
-          autoFocus={true}
-        />
-      </header>
-    );
+  render() {
+    let todos = this.props.model.todos;
+    let activeTodoCount = todos.reduce(function (accumulator, currentTodo) {
+      return currentTodo.completed ? accumulator : accumulator + 1;
+    }, 0);
+    let completedCount = todos.length - activeTodoCount;
 
     return (
       <div>
-        {app_header}
-        {app_main}
-        {app_footer}
+        {this.renderHeader()}
+        {this.renderTodoItems(todos, activeTodoCount)}
+        {this.renderFooter(activeTodoCount, completedCount)}
       </div>
     );
   }
 }
 
 TodoList.propTypes = {
-    model: PropTypes.object.isRequired
+  model: PropTypes.object.isRequired
 }
