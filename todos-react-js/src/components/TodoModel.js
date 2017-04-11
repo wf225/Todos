@@ -21,11 +21,11 @@ export class TodoModel {
         this.listeners.forEach((fn) => { fn(); });
     }
 
-    addTodo(title) {
+    add(text) {
         this.todos = this.todos.concat({
             id: Utils.uuid(),
-            title: title,
-            completed: false
+            title: text,
+            isCompleted: false
         });
 
         this.inform();
@@ -33,7 +33,7 @@ export class TodoModel {
 
     toggleAll(checked) {
         this.todos = this.todos.map(function (todo) {
-            return { ...todo, completed: checked };
+            return { ...todo, isCompleted: checked };
         });
 
         this.inform();
@@ -41,13 +41,13 @@ export class TodoModel {
 
     toggle(todoToToggle) {
         this.todos = this.todos.map(function (todo) {
-            return todo !== todoToToggle ? todo : { ...todo, completed: !todo.completed };
+            return todo !== todoToToggle ? todo : { ...todo, isCompleted: !todo.isCompleted };
         });
 
         this.inform();
     }
 
-    destroy(todo) {
+    remove(todo) {
         this.todos = this.todos.filter(function (candidate) {
             return candidate !== todo;
         });
@@ -55,7 +55,7 @@ export class TodoModel {
         this.inform();
     }
 
-    save(todoToSave, text) {
+    edit(todoToSave, text) {
         this.todos = this.todos.map(function (todo) {
             return todo !== todoToSave ? todo : { ...todo, title: text };
         });
@@ -65,7 +65,7 @@ export class TodoModel {
 
     clearCompleted() {
         this.todos = this.todos.filter(function (todo) {
-            return !todo.completed;
+            return !todo.isCompleted;
         });
 
         this.inform();

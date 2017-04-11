@@ -4,33 +4,22 @@ import { TodoFooter } from "./TodoFooter";
 import { TODOS_ALL, TODOS_ACTIVE, TODOS_COMPLETED } from "../constants/TodoFilters";
 import * as key from "../constants/Key"
 
-export class TodoList extends React.Component {
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+import * as TodoActions from '../actions'
+
+class TodoList extends React.Component {
   constructor(props) {
     super(props);
 
-    this.props.model.subscribe(() =>
-      this.setState({ todos: this.props.model.todos })
-    );
-
     this.state = {
-      nowShowing: TODOS_ALL,
+      showFilter: TODOS_ALL,
       editing: null,
       newTodo: ''
     };
   }
 
   componentDidMount() {
-    // window.addEventListener('hashchange', () => {
-    //   let route = window.location.hash.substr(1);
-    //   switch (route) {
-    //     case "/active":
-    //       return this.setState({ nowShowing: ACTIVE_TODOS });
-    //     case "/completed":
-    //       return this.setState({ nowShowing: COMPLETED_TODOS });
-    //     default:
-    //       return this.setState({ nowShowing: ALL_TODOS });
-    //   }
-    // })
   }
 
   componentDidUpdate(prevProps) {
@@ -41,7 +30,7 @@ export class TodoList extends React.Component {
 
 
   handleShow(filter) {
-    this.setState({ nowShowing: filter });
+    this.setState({ showFilter: filter });
   }
 
   handleChange(event) {
@@ -58,22 +47,22 @@ export class TodoList extends React.Component {
     let val = this.state.newTodo.trim();
 
     if (val) {
-      this.props.model.addTodo(val);
+      this.props.actions.add(val);
       this.setState({ newTodo: '' });
     }
   }
 
-  toggleAll(event) {
+  handleToggleAll(event) {
     let checked = event.target.checked;
-    this.props.model.toggleAll(checked);
+    this.props.actions.toggleAll(checked);
   }
 
   handleToggle(todoToToggle) {
-    this.props.model.toggle(todoToToggle);
+    this.props.actions.toggle(todoToToggle);
   }
 
   handleDestroy(todo) {
-    this.props.model.destroy(todo);
+    this.props.actions.remove(todo);
   }
 
   handleEdit(todo) {
@@ -81,7 +70,7 @@ export class TodoList extends React.Component {
   }
 
   handleSave(todoToSave, text) {
-    this.props.model.save(todoToSave, text);
+    this.props.actions.edit(todoToSave, text);
     this.setState({ editing: null });
   }
 
@@ -90,7 +79,7 @@ export class TodoList extends React.Component {
   }
 
   handleClearCompleted() {
-    this.props.model.clearCompleted();
+    this.props.actions.clearCompleted();
   }
 
 
@@ -127,9 +116,9 @@ export class TodoList extends React.Component {
     return todos.filter(function (todo) {
       switch (filter) {
         case TODOS_ACTIVE:
-          return !todo.completed;
+          return !todo.isCompleted;
         case TODOS_COMPLETED:
-          return todo.completed;
+          return todo.isCompleted;
         default:
           return true;
       }
@@ -159,7 +148,7 @@ export class TodoList extends React.Component {
           <input
             className="toggle-all"
             type="checkbox"
-            onChange={this.toggleAll.bind(this)}
+            onChange={this.handleToggleAll.bind(this)}
             checked={activeTodoCount === 0}
           />
           <ul className="todo-list">
@@ -171,22 +160,37 @@ export class TodoList extends React.Component {
   }
 
   render() {
-    let todos = this.props.model.todos;
+    let todos = this.props.todos;
     let activeTodoCount = todos.reduce(function (accumulator, currentTodo) {
-      return currentTodo.completed ? accumulator : accumulator + 1;
+      return currentTodo.isCompleted ? accumulator : accumulator + 1;
     }, 0);
     let completedCount = todos.length - activeTodoCount;
 
     return (
       <div>
         {this.renderHeader()}
-        {this.renderTodoItems(todos, this.state.nowShowing, activeTodoCount)}
-        {this.renderFooter(this.state.nowShowing, activeTodoCount, completedCount)}
+        {this.renderTodoItems(todos, this.state.showFilter, activeTodoCount)}
+        {this.renderFooter(this.state.showFilter, activeTodoCount, completedCount)}
       </div>
     );
   }
 }
 
 TodoList.propTypes = {
-  model: PropTypes.object.isRequired
+  todos: PropTypes.array.isRequired,
+  actions: PropTypes.object.isRequired
 }
+
+
+const mapStateToProps = state => ({
+  todos: state.todos
+})
+
+const mapDispatchToProps = dispatch => ({
+  actions: bindActionCreators(TodoActions, dispatch)
+})
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(TodoList)

@@ -8,7 +8,7 @@ export class TodoItem extends React.Component {
         super(props);
 
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.handleEdit = this.handleEdit.bind(this);
+        this.handleDoubleClick = this.handleDoubleClick.bind(this);
         this.handleKeyDown = this.handleKeyDown.bind(this);
         this.handleChange = this.handleChange.bind(this);
 
@@ -27,15 +27,12 @@ export class TodoItem extends React.Component {
         }
     }
 
-    handleEdit() {
+    handleDoubleClick() {
         this.props.onEdit();
         this.setState({ editText: this.props.todo.title });
     }
 
     handleKeyDown(event) {
-        console.log(event.which);
-        console.log(this.props.todo.title);
-
         if (event.which === key.ESCAPE_KEY) {
             this.setState({ editText: this.props.todo.title });
             this.props.onCancel(event);
@@ -59,22 +56,24 @@ export class TodoItem extends React.Component {
 
 
     render() {
+        const { todo, editing, onToggle, onDestroy } = this.props
+
         return (
             <li className={classNames({
-                completed: this.props.todo.completed,
-                editing: this.props.editing
+                completed: todo.isCompleted,
+                editing: editing
             })}>
                 <div className="view">
                     <input
                         className="toggle"
                         type="checkbox"
-                        checked={this.props.todo.completed}
-                        onChange={this.props.onToggle}
+                        checked={todo.isCompleted}
+                        onChange={onToggle}
                     />
-                    <label onDoubleClick={this.handleEdit}>
-                        {this.props.todo.title}
+                    <label onDoubleClick={this.handleDoubleClick}>
+                        {todo.title}
                     </label>
-                    <button className="destroy" onClick={this.props.onDestroy} />
+                    <button className="destroy" onClick={onDestroy} />
                 </div>
                 <input
                     ref={(input) => { this.editField = input; }}
