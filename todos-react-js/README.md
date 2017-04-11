@@ -13,12 +13,12 @@ npm install --save-dev css-loader style-loader
 npm install --save-dev jest babel-jest react-test-renderer
 npm install --save-dev enzyme react-addons-test-utils
 npm install --save-dev sinon
+npm install --save redux react-redux
+npm install --save-dev babel-plugin-transform-object-rest-spread
 ```
 
 TODO
 ```
 npm install --save react-router
 npm install webpack-dev-server -g
-
-npm install --save redux react-redux
 ```

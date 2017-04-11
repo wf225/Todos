@@ -3,5 +3,9 @@
         "es2015",
         "react"
     ],
-    "plugins": []
+    "plugins": [
+        // By default, this plugin uses Babel’s extends helper which polyfills Object.assign.
+        // Enabling this option will use Object.assign directly.
+        ["transform-object-rest-spread", { "useBuiltIns": false }]
+    ]
 }

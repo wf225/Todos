@@ -33,7 +33,7 @@ export class TodoModel {
 
     toggleAll(checked) {
         this.todos = this.todos.map(function (todo) {
-            return Utils.extend({}, todo, { completed: checked });
+            return { ...todo, completed: checked };
         });
 
         this.inform();
@@ -41,9 +41,7 @@ export class TodoModel {
 
     toggle(todoToToggle) {
         this.todos = this.todos.map(function (todo) {
-            return todo !== todoToToggle ?
-                todo :
-                Utils.extend({}, todo, { completed: !todo.completed });
+            return todo !== todoToToggle ? todo : { ...todo, completed: !todo.completed };
         });
 
         this.inform();
@@ -59,7 +57,7 @@ export class TodoModel {
 
     save(todoToSave, text) {
         this.todos = this.todos.map(function (todo) {
-            return todo !== todoToSave ? todo : Utils.extend({}, todo, { title: text });
+            return todo !== todoToSave ? todo : { ...todo, title: text };
         });
 
         this.inform();

@@ -109,23 +109,23 @@ export class TodoList extends React.Component {
     );
   }
 
-  renderFooter(activeTodoCount, completedCount) {
+  renderFooter(filter, activeTodoCount, completedCount) {
     if (activeTodoCount || completedCount) {
       return (
         <TodoFooter
           count={activeTodoCount}
           completedCount={completedCount}
           onClearCompleted={this.handleClearCompleted.bind(this)}
-          filter={this.state.nowShowing}
+          filter={filter}
           onShow={this.handleShow.bind(this)}
         />
       );
     }
   }
 
-  renderTodoItems(todos, activeTodoCount) {
-    let shownTodos = todos.filter(function (todo) {
-      switch (this.state.nowShowing) {
+  getVisibleTodos(todos, filter) {
+    return todos.filter(function (todo) {
+      switch (filter) {
         case TODOS_ACTIVE:
           return !todo.completed;
         case TODOS_COMPLETED:
@@ -134,7 +134,10 @@ export class TodoList extends React.Component {
           return true;
       }
     }, this);
+  }
 
+  renderTodoItems(todos, filter, activeTodoCount) {
+    let shownTodos = this.getVisibleTodos(todos, filter);
     let todoItems = shownTodos.map(function (todo) {
       return (
         <TodoItem
@@ -177,8 +180,8 @@ export class TodoList extends React.Component {
     return (
       <div>
         {this.renderHeader()}
-        {this.renderTodoItems(todos, activeTodoCount)}
-        {this.renderFooter(activeTodoCount, completedCount)}
+        {this.renderTodoItems(todos, this.state.nowShowing, activeTodoCount)}
+        {this.renderFooter(this.state.nowShowing, activeTodoCount, completedCount)}
       </div>
     );
   }
