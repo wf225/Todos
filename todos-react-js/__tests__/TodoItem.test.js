@@ -23,8 +23,8 @@ describe('TodoItem tests', () => {
     let wrapper;
     beforeAll(() => {
         model = new TodoModel("react-todos");
-        model.addTodo("Todo-item-1");
-        model.addTodo("Todo-item-2");
+        model.add("Todo-item-1");
+        model.add("Todo-item-2");
 
         const myMock = jest.fn();
         model.subscribe(myMock);
@@ -34,7 +34,7 @@ describe('TodoItem tests', () => {
             <TodoItem
                 key={todo.id}
                 todo={todo}
-                onToggle={jest.fn(() => { todo.completed = !todo.completed; })}
+                onToggle={jest.fn(() => { todo.isCompleted = !todo.isCompleted; })}
                 onDestroy={jest.fn(() => { todo = null; })}
                 onEdit={jest.fn()}
                 editing={false}
@@ -56,8 +56,8 @@ describe('TodoItem tests', () => {
         expect(checkbox.length).toEqual(1);
 
         checkbox.simulate('change');
-        expect(wrapper.props().todo.completed).toEqual(true);
-        expect(todo.completed).toEqual(true);
+        expect(wrapper.props().todo.isCompleted).toEqual(true);
+        expect(todo.isCompleted).toEqual(true);
 
         // restore the checkbox to uncheck.
         checkbox.simulate('change');

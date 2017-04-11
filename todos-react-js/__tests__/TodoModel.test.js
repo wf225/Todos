@@ -13,8 +13,8 @@ describe('TodoModel tests', () => {
     let model;
     beforeAll(() => {
         model = new TodoModel("react-todos");
-        model.addTodo("Todo-item-1");
-        model.addTodo("Todo-item-2");
+        model.add("Todo-item-1");
+        model.add("Todo-item-2");
 
         const myMock = jest.fn();
         model.subscribe(myMock);
@@ -26,24 +26,24 @@ describe('TodoModel tests', () => {
         expect(model.listeners.length).toEqual(1);
 
         expect(model.todos[0].title).toEqual("Todo-item-1");
-        expect(model.todos[0].completed).toEqual(false);
+        expect(model.todos[0].isCompleted).toEqual(false);
         expect(model.todos[1].title).toEqual("Todo-item-2");
-        expect(model.todos[1].completed).toEqual(false);
+        expect(model.todos[1].isCompleted).toEqual(false);
     });
 
     test('toggle todo item', () => {
         model.toggle(model.todos[0]);
-        expect(model.todos[0].completed).toEqual(true);
+        expect(model.todos[0].isCompleted).toEqual(true);
     });
 
     test('toggle all items', () => {
         model.toggleAll(true);
-        expect(model.todos[0].completed).toEqual(true);
-        expect(model.todos[1].completed).toEqual(true);
+        expect(model.todos[0].isCompleted).toEqual(true);
+        expect(model.todos[1].isCompleted).toEqual(true);
     });
 
     test('destroy todo item', () => {
-        model.destroy(model.todos[0]);
+        model.remove(model.todos[0]);
         expect(model.todos.length).toEqual(1);
     });
 
