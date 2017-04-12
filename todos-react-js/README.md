@@ -15,6 +15,7 @@ npm install --save-dev enzyme react-addons-test-utils
 npm install --save-dev sinon
 npm install --save redux react-redux
 npm install --save-dev babel-plugin-transform-object-rest-spread
+npm install --save-dev reselect
 ```
 
 TODO

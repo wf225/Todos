@@ -25,6 +25,7 @@
     "jest": "^19.0.2",
     "react-addons-test-utils": "^15.4.2",
     "react-test-renderer": "^15.4.2",
+    "reselect": "^3.0.0",
     "sinon": "^2.1.0",
     "style-loader": "^0.16.1",
     "webpack": "^2.3.2"

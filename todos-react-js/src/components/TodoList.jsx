@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { TodoItem } from "./TodoItem";
 import { TodoFooter } from "./TodoFooter";
-import { TODOS_ALL, TODOS_ACTIVE, TODOS_COMPLETED } from "../constants/TodoFilters";
+import { SHOW_ALL, SHOW_ACTIVE, SHOW_COMPLETED } from "../constants/TodoFilters";
 import * as key from "../constants/Key"
 
 export class TodoList extends React.Component {

@@ -1,3 +1,3 @@
-export const TODOS_ALL = 'all';
-export const TODOS_ACTIVE = 'active'
-export const TODOS_COMPLETED = 'completed'
+export const SHOW_ALL = 'all';
+export const SHOW_ACTIVE = 'active'
+export const SHOW_COMPLETED = 'completed'

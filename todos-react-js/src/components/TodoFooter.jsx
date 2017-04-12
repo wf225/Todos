@@ -2,7 +2,7 @@
 import React from 'react'
 import classNames from 'classnames'
 import { Utils } from "./Utils";
-import { TODOS_ALL, TODOS_ACTIVE, TODOS_COMPLETED, ENTER_KEY } from "../constants/TodoFilters";
+import { SHOW_ALL, SHOW_ACTIVE, SHOW_COMPLETED } from "../constants/TodoFilters";
 
 export class TodoFooter extends React.Component {
     constructor(props) {
@@ -33,24 +33,24 @@ export class TodoFooter extends React.Component {
                 <ul className="filters">
                     <li>
                         <a
-                            onClick={() => actions.setVisibilityFilter(TODOS_ALL)}
-                            className={classNames({ selected: filter === TODOS_ALL })}>
+                            onClick={() => actions.setVisibilityFilter(SHOW_ALL)}
+                            className={classNames({ selected: filter === SHOW_ALL })}>
                             All
 						</a>
                     </li>
                     {' '}
                     <li>
                         <a
-                            onClick={() => actions.setVisibilityFilter(TODOS_ACTIVE)}
-                            className={classNames({ selected: filter === TODOS_ACTIVE })}>
+                            onClick={() => actions.setVisibilityFilter(SHOW_ACTIVE)}
+                            className={classNames({ selected: filter === SHOW_ACTIVE })}>
                             Active
 							</a>
                     </li>
                     {' '}
                     <li>
                         <a
-                            onClick={() => actions.setVisibilityFilter(TODOS_COMPLETED)}
-                            className={classNames({ selected: filter === TODOS_COMPLETED })}>
+                            onClick={() => actions.setVisibilityFilter(SHOW_COMPLETED)}
+                            className={classNames({ selected: filter === SHOW_COMPLETED })}>
                             Completed
 							</a>
                     </li>
