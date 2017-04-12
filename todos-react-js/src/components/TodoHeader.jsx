@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import * as key from "../constants/Key"
+import { Utils } from "../components/Utils";
 
 export class TodoHeader extends React.Component {
     constructor(props) {
@@ -23,7 +24,7 @@ export class TodoHeader extends React.Component {
 
         let val = this.state.newTodo.trim();
         if (val) {
-            this.props.actions.add(val);
+            this.props.actions.add(Utils.uuid(), val);
             this.setState({ newTodo: '' });
         }
     }

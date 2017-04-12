@@ -3,8 +3,8 @@ import * as types from '../constants/ActionTypes'
 // Action Creator
 
 //
-export const add = (text) => (
-    { type: types.ADD_TODO, text }
+export const add = (id, text) => (
+    { type: types.ADD_TODO, id, text }
 )
 
 //

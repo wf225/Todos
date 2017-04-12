@@ -14,7 +14,7 @@ todo item structure:
 function addTodo(todos, action) {
     return [
         ...todos,
-        { id: Utils.uuid(), title: action.text, isCompleted: false }
+        { id: action.id, title: action.text, isCompleted: false }
     ];
 }
 
