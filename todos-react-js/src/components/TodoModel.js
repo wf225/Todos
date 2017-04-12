@@ -1,6 +1,12 @@
 "use strict";
 import { Utils } from "./Utils";
 
+// let todo_item = {
+//     id: Utils.uuid(),
+//     title: text,
+//     isCompleted: false
+// };
+
 export class TodoModel {
 
     constructor(key) {

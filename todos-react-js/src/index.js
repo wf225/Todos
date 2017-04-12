@@ -1,22 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Header } from "./components/Header";
-import TodoList from './components/TodoList';
-// import { style } from '../css/base.css';
-
 import { Provider } from 'react-redux'
 import { createStore } from 'redux'
-import reducer from './reducers'
 
-ReactDOM.render(
-    <Header />,
-    document.getElementById('header')
-);
+import { Utils } from './components/Utils';
+import rootReducer from './reducers'
+import { TODOS_ALL } from "./constants/TodoFilters";
 
-const store = createStore(reducer)
+import App from './containers/App'
+// import { style } from '../css/base.css';
+
+let preloadedState = {
+    todos: Utils.store('react-todos'),
+    showFilter: TODOS_ALL
+};
+const store = createStore(rootReducer, preloadedState)
+
 ReactDOM.render(
     <Provider store={store}>
-        <TodoList />
+        <App />
     </Provider>,
     document.getElementById('container')
 );

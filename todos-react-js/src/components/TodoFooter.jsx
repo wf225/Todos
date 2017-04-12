@@ -10,46 +10,47 @@ export class TodoFooter extends React.Component {
     }
 
     render() {
-        let activeTodoWord = Utils.pluralize(this.props.count, 'item');
+        let { filter, activeCount, completedCount, actions } = this.props;
+
+        let activeTodoWord = Utils.pluralize(activeCount, 'item');
         let clearButton = null;
 
-        if (this.props.completedCount > 0) {
+        if (completedCount > 0) {
             clearButton = (
                 <button
                     className="clear-completed"
-                    onClick={this.props.onClearCompleted}>
+                    onClick={() => actions.clearCompleted()}>
                     Clear completed
 					</button>
             );
         }
 
-        let show_filter = this.props.filter;
         return (
             <footer className="footer">
                 <span className="todo-count">
-                    <strong>{this.props.count}</strong>{activeTodoWord} left
+                    <strong>{activeCount}</strong>{activeTodoWord} left
 				</span>
                 <ul className="filters">
                     <li>
                         <a
-                            onClick={() => this.props.onShow(TODOS_ALL)}
-                            className={classNames({ selected: show_filter === TODOS_ALL })}>
+                            onClick={() => actions.setVisibilityFilter(TODOS_ALL)}
+                            className={classNames({ selected: filter === TODOS_ALL })}>
                             All
 						</a>
                     </li>
                     {' '}
                     <li>
                         <a
-                            onClick={() => this.props.onShow(TODOS_ACTIVE)}
-                            className={classNames({ selected: show_filter === TODOS_ACTIVE })}>
+                            onClick={() => actions.setVisibilityFilter(TODOS_ACTIVE)}
+                            className={classNames({ selected: filter === TODOS_ACTIVE })}>
                             Active
 							</a>
                     </li>
                     {' '}
                     <li>
                         <a
-                            onClick={() => this.props.onShow(TODOS_COMPLETED)}
-                            className={classNames({ selected: show_filter === TODOS_COMPLETED })}>
+                            onClick={() => actions.setVisibilityFilter(TODOS_COMPLETED)}
+                            className={classNames({ selected: filter === TODOS_COMPLETED })}>
                             Completed
 							</a>
                     </li>

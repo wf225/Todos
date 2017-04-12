@@ -19,15 +19,20 @@ export const save = (item, text) => (
 
 //
 export const toggle = (item) => (
-    { type: types.COMPLETE_TODO, item }
+    { type: types.TOGGLE_TODO, item }
 )
 
 //
 export const toggleAll = (checked) => (
-    { type: types.COMPLETE_ALL, checked }
+    { type: types.TOGGLE_ALL, checked }
 )
 
 //
 export const clearCompleted = () => (
     { type: types.CLEAR_COMPLETED }
+)
+
+//
+export const setVisibilityFilter = (filter) => (
+    { type: types.SET_VISIBILITY_FILTER, filter }
 )

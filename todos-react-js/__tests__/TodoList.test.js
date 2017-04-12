@@ -9,6 +9,7 @@ import { TodoModel } from '../src/components/TodoModel';
 import { TodoItem } from "../src/components/TodoItem";
 import { TodoList } from '../src/components/TodoList';
 import { Utils } from "../src/components/Utils";
+import * as TodoActions from '../src/actions'
 
 
 // Applies to all tests in this file
@@ -31,9 +32,9 @@ describe('TodoList tests', () => {
         model.subscribe(myMock);
     });
 
-    xtest('todo list snapshot', () => {
+    test('todo list snapshot', () => {
         const component = renderer.create(
-            <TodoList model={model} />
+            <TodoList todos={model.todos} actions={TodoActions} />
         );
         let tree = component.toJSON();
         expect(tree).toMatchSnapshot();
