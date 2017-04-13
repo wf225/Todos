@@ -18,8 +18,7 @@ let preloadedState = {
 const store = createStore(rootReducer, preloadedState)
 
 // output the state log.
-patchStoreToAddLogging(store)
-patchStoreToAddCrashReporting(store)
+applyMiddlewareByMonkeypatching(store, [ logger, crashReporter ]);
 
 //
 ReactDOM.render(
@@ -31,9 +30,9 @@ ReactDOM.render(
 
 
 //
-function patchStoreToAddLogging(store) {
+function logger(store) {
     let next = store.dispatch
-    store.dispatch = function dispatchAndLog(action) {
+    return function dispatchAndLog(action) {
         console.log('dispatching', action)
         let result = next(action)
         console.log('next state', store.getState())
@@ -41,9 +40,9 @@ function patchStoreToAddLogging(store) {
     }
 }
 
-function patchStoreToAddCrashReporting(store) {
+function crashReporter(store) {
     let next = store.dispatch
-    store.dispatch = function dispatchAndReportErrors(action) {
+    return function dispatchAndReportErrors(action) {
         try {
             return next(action)
         } catch (err) {
@@ -56,4 +55,13 @@ function patchStoreToAddCrashReporting(store) {
             throw err
         }
     }
+}
+
+function applyMiddlewareByMonkeypatching(store, middlewares) {
+    middlewares = middlewares.slice()
+    middlewares.reverse()
+
+    middlewares.forEach(middleware =>
+        store.dispatch = middleware(store)
+    )
 }
