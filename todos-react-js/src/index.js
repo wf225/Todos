@@ -17,14 +17,9 @@ let preloadedState = {
 };
 const store = createStore(rootReducer, preloadedState)
 
-//
-let next = store.dispatch
-store.dispatch = function dispatchAndLog(action) {
-    console.log('dispatching', action)
-    let result = next(action)
-    console.log('next state', store.getState())
-    return result
-}
+// output the state log.
+patchStoreToAddLogging(store)
+patchStoreToAddCrashReporting(store)
 
 //
 ReactDOM.render(
@@ -33,3 +28,32 @@ ReactDOM.render(
     </Provider>,
     document.getElementById('container')
 );
+
+
+//
+function patchStoreToAddLogging(store) {
+    let next = store.dispatch
+    store.dispatch = function dispatchAndLog(action) {
+        console.log('dispatching', action)
+        let result = next(action)
+        console.log('next state', store.getState())
+        return result
+    }
+}
+
+function patchStoreToAddCrashReporting(store) {
+    let next = store.dispatch
+    store.dispatch = function dispatchAndReportErrors(action) {
+        try {
+            return next(action)
+        } catch (err) {
+            console.error('ERROR:', err)
+            console.log({
+                action,
+                state: store.getState()
+            });
+
+            throw err
+        }
+    }
+}
