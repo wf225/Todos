@@ -8,12 +8,17 @@ export class TodoHeader extends React.Component {
         super(props);
 
         this.state = {
-            newTodo: ''
+            newTodo: '',
+            seconds: ''
         };
     }
 
-    handleChange(event) {
+    handleTextChange(event) {
         this.setState({ newTodo: event.target.value });
+    }
+
+    handleTimeChange(event) {
+        this.setState({ seconds: event.target.value });
     }
 
     handleNewTodoKeyDown(event) {
@@ -23,8 +28,9 @@ export class TodoHeader extends React.Component {
         event.preventDefault();
 
         let val = this.state.newTodo.trim();
+        let seconds = this.state.seconds.trim();
         if (val) {
-            this.props.actions.add(Utils.uuid(), val);
+            this.props.actions.add(Utils.uuid(), val, seconds);
             this.setState({ newTodo: '' });
         }
     }
@@ -32,14 +38,23 @@ export class TodoHeader extends React.Component {
     renderHeader() {
         return (
             <header>
-                <input
-                    className="new-todo"
-                    placeholder="What needs to be done?"
-                    value={this.state.newTodo}
-                    onKeyDown={this.handleNewTodoKeyDown.bind(this)}
-                    onChange={this.handleChange.bind(this)}
-                    autoFocus={true}
-                />
+                <div>
+                    <input
+                        className="new-todo"
+                        placeholder="What needs to be done?"
+                        value={this.state.newTodo}
+                        onKeyDown={this.handleNewTodoKeyDown.bind(this)}
+                        onChange={this.handleTextChange.bind(this)}
+                        autoFocus={true}
+                    />
+                    <input
+                        className="new-todo-timer"
+                        value={this.state.seconds}
+                        onKeyDown={this.handleNewTodoKeyDown.bind(this)}
+                        onChange={this.handleTimeChange.bind(this)}
+                    />
+                    seconds
+                </div>
             </header>
         );
     }

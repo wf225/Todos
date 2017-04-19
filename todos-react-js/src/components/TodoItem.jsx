@@ -2,6 +2,7 @@
 import React, { Component, PropTypes } from 'react'
 import classNames from 'classnames'
 import * as key from "../constants/Key"
+import * as t_status from '../constants/TimerStatus'
 
 export class TodoItem extends React.Component {
     constructor(props) {
@@ -61,7 +62,8 @@ export class TodoItem extends React.Component {
         return (
             <li className={classNames({
                 completed: todo.isCompleted,
-                editing: editing
+                editing: editing,
+                expired: todo.status == t_status.TIMER_EXPIRED
             })}>
                 <div className="view">
                     <input
@@ -73,6 +75,11 @@ export class TodoItem extends React.Component {
                     <label onDoubleClick={this.handleDoubleClick}>
                         {todo.title}
                     </label>
+                    
+                    <label className="timer">
+                        {todo.seconds}
+                    </label>
+                    
                     <button className="destroy" onClick={onDestroy} />
                 </div>
                 <input

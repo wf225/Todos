@@ -6,11 +6,13 @@ import { SHOW_ALL } from "../constants/TodoFilters";
 import rootReducer from '../reducers'
 import { logger, crashReporter } from "../middlewares/logger"
 import sagaMonitor from '../sagaMonitor'
+import * as t_status from '../constants/TimerStatus'
 
 // preloadedState
 let preloadedState = {
-    todos: Utils.store('react-todos'),
-    showFilter: SHOW_ALL
+    todos: [], // Utils.store('react-todos'),
+    showFilter: SHOW_ALL,
+    timerStatus: t_status.TIMER_STOPPED
 };
 
 // create the saga middleware

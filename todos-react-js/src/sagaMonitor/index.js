@@ -20,7 +20,7 @@ const globalScope = (
 )
 
 // `VERBOSE` can be made a setting configured from the outside.
-const VERBOSE = true
+const VERBOSE = false;
 
 function time() {
     if (typeof performance !== 'undefined' && performance.now) {

@@ -44,11 +44,11 @@ export class TodoList extends React.Component {
           key={todo.id}
           todo={todo}
           onToggle={(e) => actions.toggle(todo)}
-          onDestroy={() => actions.remove(todo)}
-          onEdit={() => this.handleEdit(todo)}
+          onDestroy={(e) => actions.remove(todo)}
+          onEdit={(e) => this.handleEdit(todo)}
           editing={this.state.editing === todo.id}
           onSave={(text) => this.handleSave(todo, text)}
-          onCancel={() => this.handleCancel()}
+          onCancel={(e) => this.handleCancel()}
         />
       );
     }, this);
