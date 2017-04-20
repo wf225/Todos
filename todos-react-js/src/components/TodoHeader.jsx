@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import * as key from "../constants/Key"
 import { Utils } from "../components/Utils";
+import Workspace from './Workspace';
 
 export class TodoHeader extends React.Component {
     constructor(props) {
@@ -37,7 +38,8 @@ export class TodoHeader extends React.Component {
 
     renderHeader() {
         return (
-            <header>
+            <div>
+                <h1 className="header">Todo list</h1>
                 <div>
                     <input
                         className="new-todo"
@@ -55,16 +57,15 @@ export class TodoHeader extends React.Component {
                     />
                     seconds
                 </div>
-            </header>
+            </div>
         );
     }
 
     render() {
         return (
-            <div>
-                <h1 className="header">Todo list</h1>
+            <Workspace.Header>
                 {this.renderHeader()}
-            </div>
+            </Workspace.Header>
         );
     }
 }

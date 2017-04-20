@@ -21,7 +21,7 @@ module.exports = {
         filename: 'app.bundle.js'
         // filename: '[name].[chunkhash].js'
     },
-    devtool: 'source-map',
+    // devtool: 'source-map',
     module: {
         rules: [
             {

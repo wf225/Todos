@@ -7,6 +7,7 @@ npm install --save react react-dom
 npm install --save classnames
 npm install --save redux react-redux
 npm install --save redux-saga
+npm install --save react-slot-fill
 
 npm install --save-dev babel-loader babel-core webpack
 npm install --save-dev babel-preset-env babel-preset-react

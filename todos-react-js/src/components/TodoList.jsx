@@ -3,6 +3,7 @@ import { TodoItem } from "./TodoItem";
 import { TodoFooter } from "./TodoFooter";
 import { SHOW_ALL, SHOW_ACTIVE, SHOW_COMPLETED } from "../constants/TodoFilters";
 import * as key from "../constants/Key"
+import Workspace from './Workspace';
 
 export class TodoList extends React.Component {
   constructor(props) {
@@ -78,9 +79,9 @@ export class TodoList extends React.Component {
     let completedCount = todos.length - activeTodoCount;
 
     return (
-      <div>
+      <Workspace.Content>
         {this.renderTodoItems(todos, activeTodoCount)}
-      </div>
+      </Workspace.Content>
     );
   }
 }
