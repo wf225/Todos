@@ -1,12 +1,27 @@
 'use strict';
+const path = require('path');
+const webpack = require('webpack');
 
-var path = require('path');
+const vendors = [
+    'classnames',
+    'react',
+    'react-dom',
+    'redux',
+    'react-redux',    
+    'redux-saga'
+];
+
 module.exports = {
-    entry: './src/index.js',
+    entry: {
+        app: './src/index.js',
+        vendor: vendors
+    },
     output: {
         path: path.join(__dirname, './dist'),
-        filename: 'bundle.js'
+        filename: 'app.bundle.js'
+        // filename: '[name].[chunkhash].js'
     },
+    devtool: 'source-map',
     module: {
         rules: [
             {
@@ -20,19 +35,24 @@ module.exports = {
                     }
                 }
             },
-            {
-                test: /\.css$/,
-                use: ['style-loader', 'css-loader']
-            }
+            { test: /\.css$/, use: ['style-loader', 'css-loader'] },
+            { test: /\.js$/, loader: "source-map-loader" }
         ]
     },
     resolve: {
         extensions: ['.js', '.jsx']
     },
-    externals: {
-        'react': 'React',
-        'react-dom': 'ReactDOM'
-        // 'redux': 'createStore',
-        // 'react-redux': 'Provider'
-    }
+    // externals: {
+    //     'react': 'React',
+    //     'react-dom': 'ReactDOM'
+    // },
+    plugins: [
+        // new webpack.optimize.OccurrenceOrderPlugin(true),
+        new webpack.optimize.CommonsChunkPlugin({
+            name: "vendor",
+            filename: "vendor.bundle.js",
+            minChunks: Infinity
+            // names: ['vendor', 'manifest']
+        })
+    ]
 }

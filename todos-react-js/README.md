@@ -18,6 +18,7 @@ npm install --save-dev sinon
 npm install --save-dev babel-plugin-transform-object-rest-spread
 npm install --save-dev reselect
 npm install --save-dev babel-polyfill
+npm install --save-dev source-map-loader
 ```
 
 TODO
