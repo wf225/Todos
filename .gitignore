@@ -3,7 +3,10 @@ hello-react-ts/node_modules/
 hello-react-ts/dist/
 todos-react-js/node_modules/
 todos-react-js/dist/
-todolist-js/node_modules/
-todolist-js/dist/
 todos-react-js/coverage/
 todos-react-js/__tests__/__snapshots__/
+todos-react-lerna/node_modules/
+todos-react-lerna/dist/
+todos-react-lerna/coverage/
+todos-react-lerna/__tests__/__snapshots__/
+
