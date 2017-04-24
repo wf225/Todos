@@ -3,7 +3,7 @@ import TodoListContainer from './TodoListContainer'
 import FooterContainer from './FooterContainer'
 import HeaderContainer from './HeaderContainer'
 import { Provider } from 'react-slot-fill'
-import Workspace from '../components/Workspace';
+import Workspace from 'todos-platform';
 
 /*
 TodoHeader: add todo item

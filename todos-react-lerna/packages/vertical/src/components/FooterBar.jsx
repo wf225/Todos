@@ -4,7 +4,7 @@ import classNames from 'classnames'
 import { Utils } from "./Utils";
 import { SHOW_ALL, SHOW_ACTIVE, SHOW_COMPLETED } from "../constants/TodoFilters";
 import { Slot, Fill } from 'react-slot-fill'
-import Workspace from './Workspace';
+import Workspace from 'todos-platform';
 
 class FooterBar extends React.Component {
     constructor(props) {

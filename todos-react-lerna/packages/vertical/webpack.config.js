@@ -2,19 +2,9 @@
 const path = require('path');
 const webpack = require('webpack');
 
-const vendors = [
-    'classnames',
-    'react',
-    'react-dom',
-    'redux',
-    'react-redux',    
-    'redux-saga'
-];
-
 module.exports = {
     entry: {
-        app: './src/index.js',
-        vendor: vendors
+        app: './src/index.js'
     },
     output: {
         path: path.join(__dirname, './dist'),
@@ -29,9 +19,8 @@ module.exports = {
                 exclude: /(node_modules|bower_components)/,
                 use: {
                     loader: 'babel-loader',
-                    // REF: https://babeljs.io/docs/usage/api/#options
                     options: {
-                        presets: ['env', 'react']
+                        presets: ['es2015', 'react']
                     }
                 }
             },
@@ -42,17 +31,10 @@ module.exports = {
     resolve: {
         extensions: ['.js', '.jsx']
     },
-    // externals: {
-    //     'react': 'React',
-    //     'react-dom': 'ReactDOM'
-    // },
     plugins: [
-        // new webpack.optimize.OccurrenceOrderPlugin(true),
-        new webpack.optimize.CommonsChunkPlugin({
-            name: "vendor",
-            filename: "vendor.bundle.js",
-            minChunks: Infinity
-            // names: ['vendor', 'manifest']
+        new webpack.DllReferencePlugin({
+            context: '.',
+            manifest: require("./dist/vendor.manifest.json"),
         })
     ]
 }

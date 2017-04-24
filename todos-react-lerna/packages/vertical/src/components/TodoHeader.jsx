@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import * as key from "../constants/Key"
 import { Utils } from "../components/Utils";
-import Workspace from './Workspace';
+import Workspace from 'todos-platform';
 
 export class TodoHeader extends React.Component {
     constructor(props) {

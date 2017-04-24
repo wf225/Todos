@@ -1,0 +1,15 @@
+# dependencies
+/node_modules
+
+# testing
+/coverage
+/__tests__/__snapshots__/
+
+# production demo
+/dist
+
+# production lib
+/lib
+
+# misc
+.DS_Store

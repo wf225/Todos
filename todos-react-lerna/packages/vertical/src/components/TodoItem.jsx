@@ -1,4 +1,3 @@
-'use strict';
 import React, { Component, PropTypes } from 'react'
 import classNames from 'classnames'
 import * as key from "../constants/Key"

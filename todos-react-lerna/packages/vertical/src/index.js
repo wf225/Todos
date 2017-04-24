@@ -10,6 +10,7 @@ import App from './containers/App'
 import configureStore from './store/configureStore'
 import { rootSaga } from './middlewares/sagas'
 
+
 const store = configureStore();
 store.runSaga(rootSaga);
 
