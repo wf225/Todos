@@ -1,18 +1,20 @@
 {
   "name": "todos-vertical",
   "version": "0.8.1",
-  "description": "Helloworld with js+react+webpack",
+  "description": "Todos-vertical",
   "main": "index.js",
   "author": "Bill Wu",
   "license": "ISC",
   "dependencies": {
     "classnames": "^2.2.5",
+    "express": "^4.15.2",
     "react": "15.4.2",
     "react-dom": "15.4.2",
     "react-redux": "^5.0.4",
     "react-slot-fill": "1.0.0-alpha.10",
     "redux": "^3.6.0",
     "redux-saga": "^0.14.6",
+    "redux-thunk": "^2.2.0",
     "todos-platform": "^0.1.0"
   },
   "devDependencies": {

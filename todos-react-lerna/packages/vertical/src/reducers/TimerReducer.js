@@ -1,12 +1,12 @@
 import * as types from '../constants/ActionTypes'
-import * as t_status from '../constants/TimerStatus'
+import * as timerStatus from '../constants/TimerStatus'
 
 function timer_start(state, action) {
-    return t_status.TIMER_RUNNING;
+    return timerStatus.TIMER_RUNNING;
 }
 
 function timer_stop(state, action) {
-    return t_status.TIMER_STOPPED;
+    return timerStatus.TIMER_STOPPED;
 }
 
 export default function timerReducer(timerState, action) {

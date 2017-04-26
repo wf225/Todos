@@ -1,7 +1,7 @@
 {
   "name": "todos-platform",
   "version": "0.1.0",
-  "description": "Helloworld with js+react+webpack",
+  "description": "Todos-platform",
   "main": "./lib/index.js",
   "author": "Bill Wu",
   "license": "ISC",

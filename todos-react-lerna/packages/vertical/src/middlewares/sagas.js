@@ -1,8 +1,8 @@
 import { takeEvery } from 'redux-saga'
 import { actionChannel, call, take, put, race, select } from 'redux-saga/effects'
-import * as types from '../constants/ActionTypes'
+import * as actionTypes from '../constants/ActionTypes'
 import * as actions from '../actions'
-import * as t_status from '../constants/TimerStatus'
+import * as timerStatus from '../constants/TimerStatus'
 
 
 export function* watchAndLog() {
@@ -23,24 +23,24 @@ const delay = (ms) => (
 )
 
 export function* startTimer() {
-  const channel = yield actionChannel(types.ADD_TODO);
+  const channel = yield actionChannel(actionTypes.ADD_TODO);
 
   while (yield take(channel)) {
     const state = yield select()
     // start the global timer.
-    if (state.timerStatus == t_status.TIMER_STOPPED) {
+    if (state.timerStatus == timerStatus.TIMER_STOPPED) {
       yield put(actions.timer_start());
     }
   }
 }
 
 function* watchTimer() {
-  const channel = yield actionChannel(types.TIMER_START);
+  const channel = yield actionChannel(actionTypes.TIMER_START);
   while (yield take(channel)) {
 
     while (true) {
       const winner = yield race({
-        stopped: take(types.TIMER_STOP),
+        stopped: take(actionTypes.TIMER_STOP),
         tick: call(delay, 1000)
       });
 

@@ -5,7 +5,6 @@ import { createStore, combineReducers, applyMiddleware } from 'redux'
 import 'babel-polyfill'
 import createSagaMiddleware from 'redux-saga'
 // import { style } from '../css/base.css';
-
 import App from './containers/App'
 import configureStore from './store/configureStore'
 import { rootSaga } from './middlewares/sagas'

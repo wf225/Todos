@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import classNames from 'classnames'
 import * as key from "../constants/Key"
-import * as t_status from '../constants/TimerStatus'
+import * as timerStatus from '../constants/TimerStatus'
 
 export class TodoItem extends React.Component {
     constructor(props) {
@@ -62,7 +62,7 @@ export class TodoItem extends React.Component {
             <li className={classNames({
                 completed: todo.isCompleted,
                 editing: editing,
-                expired: todo.status == t_status.TIMER_EXPIRED
+                expired: todo.status == timerStatus.TIMER_EXPIRED
             })}>
                 <div className="view">
                     <input

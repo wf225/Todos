@@ -16,6 +16,7 @@ export class TodoList extends React.Component {
   }
 
   componentDidMount() {
+    this.props.actions.fetchAll();
   }
 
   componentDidUpdate(prevProps) {
@@ -29,7 +30,7 @@ export class TodoList extends React.Component {
   }
 
   handleSave(todoToSave, text) {
-    this.props.actions.save(todoToSave, text);
+    this.props.actions.update(todoToSave, text);
     this.setState({ editing: null });
   }
 
@@ -44,7 +45,7 @@ export class TodoList extends React.Component {
         <TodoItem
           key={todo.id}
           todo={todo}
-          onToggle={(e) => actions.toggle(todo)}
+          onToggle={(e) => actions.toggle(todo, e.target.checked)}
           onDestroy={(e) => actions.remove(todo)}
           onEdit={(e) => this.handleEdit(todo)}
           editing={this.state.editing === todo.id}

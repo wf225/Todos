@@ -39,8 +39,17 @@ lerna bootstrap --yes
 webpack --config webpack.dll.config.js
 ```
 
+## Server
+```
+npm install --save express
+npm install --save body-parser
+npm install --save isomorphic-fetch
+```
+
 ## TODO
 ```
 npm install --save react-router
 npm install webpack-dev-server -g
+
+es6-promise
 ```

@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { TodoList } from '../components/TodoList';
-import * as TodoActions from '../actions'
+import * as actions from '../actions'
 import * as filters from "../constants/TodoFilters";
 import { getVisibleTodos } from '../selectors'
 
@@ -12,7 +12,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-    actions: bindActionCreators(TodoActions, dispatch)
+    actions: bindActionCreators(actions, dispatch)
 })
 
 export default connect(

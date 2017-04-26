@@ -1,5 +1,5 @@
-import * as types from '../constants/ActionTypes'
-import * as t_status from '../constants/TimerStatus'
+import * as actionTypes from '../constants/ActionTypes'
+import * as timerStatus from '../constants/TimerStatus'
 import { Utils } from "../components/Utils";
 
 
@@ -14,44 +14,28 @@ todo item structure:
 };
 */
 
-function addTodo(todos, action) {
-    let seconds, status;
-    if (action.seconds && action.seconds > 0) {
-        status = t_status.TIMER_RUNNING;
-    }
-    else {
-        status: t_status.TIMER_STOPPED;
-    }
-
-    seconds = action.seconds;
-
+function addTodo(todos, item) {
     return [
         ...todos,
-        { id: action.id, title: action.text, isCompleted: false, status, seconds }
+        { ...item }
     ];
 }
 
-function deleteTodo(todos, action) {
+function removeTodo(todos, item_id) {
     return todos.filter(function (candidate) {
-        return candidate.id !== action.item.id;
+        return candidate.id !== item_id;
     });
 }
 
-function updateTodo(todos, action) {
+function updateTodo(todos, item) {
     return todos.map(function (todo) {
-        return todo.id !== action.item.id ? todo : { ...todo, title: action.text };
+        return todo.id !== item.id ? todo : { ...todo, title: item.title, isCompleted: item.isCompleted };
     });
 }
 
-function toggleTodo(todos, action) {
+function toggleAll(todos, checked) {
     return todos.map(function (todo) {
-        return todo.id !== action.item.id ? todo : { ...todo, isCompleted: !todo.isCompleted };
-    });
-}
-
-function toggleAll(todos, action) {
-    return todos.map(function (todo) {
-        return { ...todo, isCompleted: action.checked };
+        return { ...todo, isCompleted: checked };
     });
 }
 
@@ -63,17 +47,17 @@ function clearCompleted(todos, action) {
 
 function timer_tick(todos, action) {
     return todos.map(function (todo) {
-        if (todo.isCompleted || todo.status == t_status.TIMER_STOPPED || todo.status == t_status.TIMER_EXPIRED) {
+        if (todo.isCompleted || todo.status == timerStatus.TIMER_STOPPED || todo.status == timerStatus.TIMER_EXPIRED) {
             return { ...todo };
         }
 
         let seconds = todo.seconds;
         let status = todo.status;
 
-        if (status == t_status.TIMER_RUNNING) {
+        if (status == timerStatus.TIMER_RUNNING) {
             seconds = todo.seconds - 1;
             if (seconds <= 0) {
-                status = t_status.TIMER_EXPIRED;
+                status = timerStatus.TIMER_EXPIRED;
             }
         }
 
@@ -83,26 +67,27 @@ function timer_tick(todos, action) {
 
 export default function todosReducer(todosState = [], action) {
     switch (action.type) {
-        case types.ADD_TODO:
-            return addTodo(todosState, action);
+        case actionTypes.ADD_TODO:
+            return addTodo(todosState, action.payload);
 
-        case types.DELETE_TODO:
-            return deleteTodo(todosState, action);
+        case actionTypes.DELETE_TODO:
+            return removeTodo(todosState, action.payload);
 
-        case types.SAVE_TODO:
-            return updateTodo(todosState, action);
+        case actionTypes.UPDATE_TODO:
+        case actionTypes.TOGGLE_TODO:
+            return updateTodo(todosState, action.payload);
 
-        case types.TOGGLE_TODO:
-            return toggleTodo(todosState, action);
+        case actionTypes.TOGGLE_ALL:
+            return toggleAll(todosState, action.payload);
 
-        case types.TOGGLE_ALL:
-            return toggleAll(todosState, action);
-
-        case types.CLEAR_COMPLETED:
+        case actionTypes.CLEAR_COMPLETED:
             return clearCompleted(todosState, action);
 
-        case types.TIMER_TICK:
+        case actionTypes.TIMER_TICK:
             return timer_tick(todosState, action);
+
+        case actionTypes.FETCH_TODOS:
+          return action.payload;
 
         default:
             return todosState;

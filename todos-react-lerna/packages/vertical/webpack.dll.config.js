@@ -9,7 +9,8 @@ const vendors = [
     'react-redux',    
     'redux-saga',
     'react-slot-fill',
-    'todos-platform'
+    'todos-platform',
+    'redux-thunk'
 ];
 
 module.exports = {
