@@ -1,0 +1,14 @@
+{
+  "name": "host",
+  "version": "0.1.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Bill Wu",
+  "license": "ISC",
+  "dependencies": {
+    "little-loader": "^0.2.0"
+  }
+}

@@ -1,6 +1,6 @@
 {
   "name": "todos-platform",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Todos-platform",
   "main": "./lib/index.js",
   "author": "Bill Wu",
@@ -28,10 +28,10 @@
     "react-test-renderer": "^15.4.2",
     "style-loader": "^0.16.1",
     "webpack": "^2.3.2"
-  },  
+  },
   "scripts": {
+    "prebuild": "webpack --config webpack.dll.config.js",
     "build": "webpack",
-    "dll": "webpack --config webpack.dll.config.js",
     "compile": "babel --presets es2015,react -d lib/ src/",
     "prepublish": "npm run compile",
     "test": "jest -u --coverage"
