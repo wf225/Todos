@@ -1,16 +1,20 @@
 import * as actionTypes from '../constants/ActionTypes'
 import * as timerStatus from '../constants/TimerStatus'
 import fetch from 'isomorphic-fetch'
+import { Request } from './fetchRequest'
 
 //
-export const fetchAll = () => {
-    return (dispatch) => {
-        fetch("/api/todos")
-            .then((response) => response.json())
-            .then((data) => dispatch({ type: actionTypes.FETCH_TODOS, payload: data }))
-            .catch((err) => dispatch({ type: actionTypes.FETCH_TODOS_FAILED, payload: err }))
-    }
-}
+// export const fetchAll = () => {
+//     return (dispatch) => {
+//         Request.get("/api/todos")
+//             .then((response) => response.json())
+//             .then((data) => dispatch({ type: actionTypes.FETCH_TODOS, payload: data }))
+//             .catch((err) => dispatch({ type: actionTypes.FETCH_TODOS_FAILED, payload: err }))
+//     }
+// }
+export const fetchAll = (id, title, seconds) => (
+    { type: actionTypes.FETCH_TODOS }
+)
 
 //
 export const add = (id, title, seconds) => {
@@ -23,17 +27,9 @@ export const add = (id, title, seconds) => {
         status: timerStatus.TIMER_STOPPED;
     }
 
-    let options = {
-        method: 'POST',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ id, title, seconds, status, isCompleted: false })
-    };
-
+    let item = { id, title, seconds, status, isCompleted: false };
     return (dispatch) => {
-        fetch("/api/todos", options)
+        Request.post("/api/todos", item)
             .then((response) => response.json())
             .then((data) => dispatch({ type: actionTypes.ADD_TODO, payload: data }))
             .catch((err) => dispatch({ type: actionTypes.FETCH_TODOS_FAILED, payload: err }))
@@ -43,16 +39,8 @@ export const add = (id, title, seconds) => {
 //
 export const remove = (item) => {
     // { type: actionTypes.DELETE_TODO, item }
-    let options = {
-        method: 'DELETE',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        }
-    };
-
     return (dispatch) => {
-        fetch("/api/todo/" + item.id, options)
+        Request.delete("/api/todo/" + item.id)
             .then((response) => response.json())
             .then((data) => dispatch({ type: actionTypes.DELETE_TODO, payload: data.id }))
             .catch((err) => dispatch({ type: actionTypes.FETCH_TODOS_FAILED, payload: err }))
@@ -60,17 +48,8 @@ export const remove = (item) => {
 }
 
 const updateTodo = (item) => {
-    let options = {
-        method: 'PUT',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(item)
-    };
-
     return (dispatch) => {
-        fetch("/api/todo/" + item.id, options)
+        Request.put("/api/todo/" + item.id, item)
             .then((response) => response.json())
             .then((data) => dispatch({ type: actionTypes.UPDATE_TODO, payload: data }))
             .catch((err) => dispatch({ type: actionTypes.FETCH_TODOS_FAILED, payload: err }))
@@ -92,19 +71,10 @@ export const toggle = (item, checked) => (
 //
 export const toggleAll = (checked) => {
     // { type: actionTypes.TOGGLE_ALL, payload: checked }
-    let options = {
-        method: 'PUT',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ checked })
-    };
-
     return (dispatch) => {
-        fetch("/api/todos/", options)
+        Request.patch("/api/todos/", { isCompleted: checked })
             .then((response) => response.json())
-            .then((data) => dispatch({ type: actionTypes.TOGGLE_ALL, payload: checked }))
+            .then((data) => dispatch({ type: actionTypes.TOGGLE_ALL, payload: data.isCompleted }))
             .catch((err) => dispatch({ type: actionTypes.FETCH_TODOS_FAILED, payload: err }))
     }
 }
@@ -112,16 +82,8 @@ export const toggleAll = (checked) => {
 //
 export const clearCompleted = () => {
     // { type: actionTypes.CLEAR_COMPLETED }
-    let options = {
-        method: 'DELETE',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        }
-    };
-
     return (dispatch) => {
-        fetch("/api/todos", options)
+        Request.delete("/api/todos")
             .then((response) => response.json())
             .then((data) => dispatch({ type: actionTypes.CLEAR_COMPLETED }))
             .catch((err) => dispatch({ type: actionTypes.FETCH_TODOS_FAILED, payload: err }))

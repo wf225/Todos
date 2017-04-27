@@ -52,12 +52,13 @@ Todos.update = (item, callback) => {
     if (err) return callback(err);
 
     let todos = JSON.parse(data);
+    let keys = Object.keys(item);
+
     for (let todo of todos) {
       if (todo.id == item.id) {
-        todo.title = item.title;
-        todo.isCompleted = item.isCompleted;
-        todo.status = item.status;
-        todo.seconds = item.seconds;
+        for (key of keys) {
+          todo[key] = item[key];
+        }
         break;
       }
     }
@@ -71,19 +72,19 @@ Todos.update = (item, callback) => {
 };
 
 //
-Todos.toggleAll = (checked, callback) => {
+Todos.toggleAll = (isCompleted, callback) => {
   fs.readFile(json_file, 'utf8', (err, data) => {
     if (err) return callback(err);
 
     let todos = JSON.parse(data);
     for (let todo of todos) {
-      todo.isCompleted = checked;
+      todo.isCompleted = isCompleted;
     }
 
     // write it back 
     let json = JSON.stringify(todos);
     fs.writeFile(json_file, json, 'utf8', (err, data) => {
-      return callback(err, JSON.stringify({ checked }));
+      return callback(err, JSON.stringify({ isCompleted }));
     });
   });
 };

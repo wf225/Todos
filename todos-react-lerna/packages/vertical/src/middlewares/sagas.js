@@ -3,8 +3,9 @@ import { actionChannel, call, take, put, race, select } from 'redux-saga/effects
 import * as actionTypes from '../constants/ActionTypes'
 import * as actions from '../actions'
 import * as timerStatus from '../constants/TimerStatus'
+import { Request } from '../actions/fetchRequest'
 
-
+// log
 export function* watchAndLog() {
   while (true) {
     const action = yield take('*')
@@ -15,7 +16,7 @@ export function* watchAndLog() {
   }
 }
 
-//
+// timer
 const delay = (ms) => (
   new Promise(resolve => {
     setTimeout(() => resolve(), ms);
@@ -54,10 +55,26 @@ function* watchTimer() {
   }
 }
 
+// restful api
+function* getAll(action) {
+  try {
+    const data = yield call( () => Request.get("/api/todos").then((response) => response.json()) );
+    yield put({ type: actionTypes.FETCH_TODOS_SUCCEEDED, payload: data });
+  } catch (e) {
+    yield put({ type: actionTypes.FETCH_TODOS_FAILED, payload: error });
+  }
+}
+
+function* restfulSaga() {
+  yield* [takeEvery(actionTypes.FETCH_TODOS, getAll)];
+}
+
+
 export function* rootSaga() {
   yield [
     watchAndLog(),
     startTimer(),
-    watchTimer()
+    watchTimer(),
+    restfulSaga()
   ]
 }

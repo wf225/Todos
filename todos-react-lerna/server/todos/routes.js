@@ -47,9 +47,9 @@ module.exports = function (app) {
   });
 
   // toggle all todos
-  app.put('/api/todos', function (req, res) {
-    let checked = req.body.checked;
-    Todos.toggleAll(checked, (err, result) => {
+  app.patch('/api/todos', function (req, res) {
+    let isCompleted = req.body.isCompleted;
+    Todos.toggleAll(isCompleted, (err, result) => {
       if (err) {
         return res.status(400).send({ message: "Toggle all todo failed: " + err });
       }

@@ -86,7 +86,7 @@ export default function todosReducer(todosState = [], action) {
         case actionTypes.TIMER_TICK:
             return timer_tick(todosState, action);
 
-        case actionTypes.FETCH_TODOS:
+        case actionTypes.FETCH_TODOS_SUCCEEDED:
           return action.payload;
 
         default:
