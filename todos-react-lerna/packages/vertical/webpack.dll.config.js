@@ -10,7 +10,8 @@ const vendors = [
     'redux-saga',
     'react-slot-fill',
     'todos-platform',
-    'redux-thunk'
+    'redux-thunk',
+    'isomorphic-fetch'
 ];
 
 module.exports = {

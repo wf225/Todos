@@ -32,6 +32,10 @@ lerna init
 
 lerna clean --yes
 lerna bootstrap --yes
+
+lerna run build
+
+lerna publish --skip-git --skip-npm
 ```
 
 ## [Weback Dll](https://github.com/chenchunyong/webpack-dllPlugin)
