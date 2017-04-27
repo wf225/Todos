@@ -28,6 +28,7 @@
     "isomorphic-fetch": "^2.2.1"
   },
   "scripts": {
+    "bootstrap": "npm install && lerna clean --yes && lerna bootstrap --yes",
     "start": "node server.js"
   }
 }
