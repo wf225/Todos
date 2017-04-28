@@ -29,7 +29,7 @@
   },
   "scripts": {
     "bootstrap": "npm install && lerna clean --yes && lerna bootstrap --yes",
-    "start": "node server.js",
+    "start": "node packages/server/app.js",
     "build": "lerna run build"
   }
 }

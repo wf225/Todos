@@ -67,20 +67,19 @@ function timer_tick(todos, action) {
 
 export default function todosReducer(todosState = [], action) {
     switch (action.type) {
-        case actionTypes.ADD_TODO:
+        case actionTypes.ADD_TODO_SUCCEEDED:
             return addTodo(todosState, action.payload);
 
-        case actionTypes.DELETE_TODO:
-            return removeTodo(todosState, action.payload);
+        case actionTypes.DELETE_TODO_SUCCEEDED:
+            return removeTodo(todosState, action.payload.id);
 
-        case actionTypes.UPDATE_TODO:
-        case actionTypes.TOGGLE_TODO:
+        case actionTypes.UPDATE_TODO_SUCCEEDED:
             return updateTodo(todosState, action.payload);
 
-        case actionTypes.TOGGLE_ALL:
+        case actionTypes.TOGGLE_ALL_SUCCEEDED:
             return toggleAll(todosState, action.payload);
 
-        case actionTypes.CLEAR_COMPLETED:
+        case actionTypes.CLEAR_COMPLETED_SUCCEEDED:
             return clearCompleted(todosState, action);
 
         case actionTypes.TIMER_TICK:

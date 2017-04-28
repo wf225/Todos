@@ -7,7 +7,7 @@ import createSagaMiddleware from 'redux-saga'
 // import { style } from '../css/base.css';
 import App from './containers/App'
 import configureStore from './store/configureStore'
-import { rootSaga } from './middlewares/sagas'
+import { rootSaga } from './middlewares/rootSaga'
 
 
 const store = configureStore();

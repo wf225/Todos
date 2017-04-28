@@ -96,7 +96,7 @@ Todos.removeCompleted = (callback) => {
 
     let todos = JSON.parse(data);
     let new_todos = todos.filter(function (candidate) {
-      return candidate.isCompleted == "false";
+      return candidate.isCompleted == false;
     });
 
     // write it back 
