@@ -1,4 +1,5 @@
-let Todos = require("./Todos");
+// let Todos = require("./TodosJson");
+let Todos = require("./TodosDb");
 
 module.exports = function (app) {
 
@@ -24,9 +25,10 @@ module.exports = function (app) {
   });
 
   // delete a todo
-  app.delete('/api/todo/:todoId', function (req, res) {
-    let todo_id = req.params.todoId;
-    Todos.remove(todo_id, (err, result) => {
+  app.delete('/api/todo/:id/:title', function (req, res) {
+    let id = req.params.id;
+    let title = req.params.title;
+    Todos.remove(id, title, (err, result) => {
       if (err) {
         return res.status(400).send({ message: "Delete todo failed: " + err });
       }
@@ -35,8 +37,8 @@ module.exports = function (app) {
   });
 
   // update a todo
-  app.put('/api/todo/:todoId', function (req, res) {
-    let todo_id = req.params.todoId;
+  app.put('/api/todo/:id', function (req, res) {
+    let id = req.params.id;
     let todo = req.body
     Todos.update(todo, (err, result) => {
       if (err) {

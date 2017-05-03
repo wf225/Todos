@@ -16,7 +16,7 @@ export const add = (id, title, seconds) => {
 
 //
 export const remove = (item) => {
-    return { type: actionTypes.DELETE_TODO, data: { id: item.id } }
+    return { type: actionTypes.DELETE_TODO, data: { ...item } }
 }
 
 

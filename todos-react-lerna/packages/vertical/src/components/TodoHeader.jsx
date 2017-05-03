@@ -31,7 +31,7 @@ export class TodoHeader extends React.Component {
         let val = this.state.newTodo.trim();
         let seconds = this.state.seconds.trim();
         if (val) {
-            this.props.actions.add(Utils.uuid(), val, seconds);
+            this.props.actions.add(Utils.uuid(), val, seconds ? seconds : 0);
             this.setState({ newTodo: '' });
         }
     }

@@ -1,8 +1,9 @@
-let fs = require("fs");
-let util = require('util');
-let JsonUtils = require('../utils/JsonUtils');
+const fs = require("fs");
+const util = require('util');
+const JsonUtils = require('../utils/JsonUtils');
 
-let json_file = __dirname + "/" + "todos.json";
+const json_file = __dirname + "/" + "todos.json";
+
 function Todos() { }
 
 //

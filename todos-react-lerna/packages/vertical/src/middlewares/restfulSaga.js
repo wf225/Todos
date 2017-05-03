@@ -2,6 +2,7 @@ import { takeEvery } from 'redux-saga'
 import { actionChannel, call, take, put, race, select } from 'redux-saga/effects'
 import * as actionTypes from '../constants/ActionTypes'
 import { Request } from '../actions/fetchRequest'
+import util from 'util'
 
 // restful api
 //
@@ -30,7 +31,7 @@ function* add(action) {
 //
 function* remove(action) {
   const result = yield call(() =>
-    Request.delete("/api/todo/" + action.data.id)
+    Request.delete(util.format("/api/todo/%s/%s", action.data.id, action.data.title))
       .then((response) => response.json())
   );
   yield put({ type: actionTypes.DELETE_TODO_SUCCEEDED, payload: result });
