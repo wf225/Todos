@@ -56,6 +56,8 @@ Todos.getAll = (callback) => {
 
 //
 Todos.add = (item, callback) => {
+    callback(null, JSON.stringify(item));
+
     var params = {
         TableName: tableName,
         Item: {
@@ -74,13 +76,15 @@ Todos.add = (item, callback) => {
             return callback(err);
         } else {
             console.log("Added item:", JSON.stringify(data, null, 2));
-            return callback(err, JSON.stringify(item));
+            // return callback(err, JSON.stringify(item));
         }
     });
 };
 
 //
 Todos.remove = (id, title, callback) => {
+    callback(null, JSON.stringify({ id: id }));
+
     var params = {
         TableName: tableName,
         Key: {
@@ -96,13 +100,15 @@ Todos.remove = (id, title, callback) => {
             return callback(err);
         } else {
             console.log("DeleteItem succeeded:", JSON.stringify(data, null, 2));
-            return callback(err, JSON.stringify({ id: id }));
+            // return callback(err, JSON.stringify({ id: id }));
         }
     });
 };
 
 //
 Todos.update = (item, callback) => {
+    callback(null, JSON.stringify(item));
+
     var params = {
         TableName: tableName,
         Key: {
@@ -128,13 +134,15 @@ Todos.update = (item, callback) => {
             return callback(err);
         } else {
             console.log("UpdateItem succeeded:", JSON.stringify(data, null, 2));
-            return callback(err, JSON.stringify(item));
+            // return callback(err, JSON.stringify(item));
         }
     });
 };
 
 //
 Todos.toggleAll = (isCompleted, callback) => {
+    callback(null, JSON.stringify({ isCompleted }));
+
     var params = {
         TableName: tableName
     };
@@ -153,13 +161,15 @@ Todos.toggleAll = (isCompleted, callback) => {
                 }
             });
 
-            return callback(err, JSON.stringify({ isCompleted }));
+            // return callback(err, JSON.stringify({ isCompleted }));
         }
     });
 };
 
 //
 Todos.removeCompleted = (callback) => {
+    callback(null, JSON.stringify({}));
+
     var params = {
         TableName: tableName
     };
@@ -177,7 +187,7 @@ Todos.removeCompleted = (callback) => {
                 }
             });
 
-            return callback(err, JSON.stringify({}));
+            // return callback(err, JSON.stringify({}));
         }
     });
 };
