@@ -22,11 +22,7 @@
     "style-loader": "^0.16.1",
     "webpack": "^2.3.2"
   },
-  "dependencies": {
-    "body-parser": "^1.17.1",
-    "express": "^4.15.2",
-    "isomorphic-fetch": "^2.2.1"
-  },
+  "dependencies": {},
   "scripts": {
     "bootstrap": "npm install && lerna clean --yes && lerna bootstrap --yes",
     "start": "node packages/server/app.js",
