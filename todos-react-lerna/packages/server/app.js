@@ -1,32 +1,42 @@
-const express = require('express');
-const path = require('path');
-const http = require('http');
-const app = express();
+const express = require('express')
 const bodyParser = require('body-parser')
+const cors = require('cors')
+const compression = require('compression')
+const http = require('http');
+const awsServerlessExpressMiddleware = require('aws-serverless-express/middleware')
+const app = express();
+
+app.use(compression())
+app.use(cors())
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }))
+
+/*
+// node server routes =========================================================
+// app.use(express.static(__dirname + '/../vertical')); // set the static files location ./public/index.html
 
 const hostname = '127.0.0.1';
 const port = 8001;
-
 app.set('port', port);
-app.use(express.static('./packages/vertical')); // set the static files location ./public/index.html
 
-app.use(bodyParser.urlencoded({'extended': 'true'})); // parse application/x-www-form-urlencoded
-app.use(bodyParser.json()); // parse application/json
-// app.use(bodyParser.json({type: 'application/vnd.api+json'})); // parse application/vnd.api+json as json
-// app.use(bodyParser.json({ type: 'application/*+json' })) // parse various different custom JSON types as JSON 
-// app.use(bodyParser.raw({ type: 'application/vnd.custom-type' })) // parse some custom thing into a Buffer 
-// app.use(bodyParser.text({ type: 'text/html' })) // parse an HTML body into a string 
-
-// routes =====================================================================
 require('./routes.js')(app);
 
 // listen (start app with 'node server.js') ===================================
-// app.listen(port, () => {
-//   console.log("Server listening on port %s", port);
-// });
-
-// OR:
-const server = http.createServer(app);
-server.listen(port, hostname, () => {
+app.listen(port, () => {
   console.log("Server listening on port %s", port);
 });
+
+// OR:
+// const server = http.createServer(app);
+// server.listen(port, hostname, () => {
+//   console.log("Server listening on port %s", port);
+// });
+*/
+
+// AWS serverless
+app.use(awsServerlessExpressMiddleware.eventContext())
+
+require('./routes.js')(app);
+
+// Export your express server so you can import it in the lambda function.
+module.exports = app

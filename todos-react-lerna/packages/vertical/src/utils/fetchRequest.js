@@ -1,5 +1,7 @@
 import fetch from 'isomorphic-fetch'
 
+const RESTful_Host = "https://aza1oyphg6.execute-api.us-east-1.amazonaws.com/staging1";
+
 export class Request {
 
     static _fetch(url, method, data) {
@@ -10,7 +12,7 @@ export class Request {
         if (data) {
             options.body = JSON.stringify(data);
         }
-        return fetch(url, options);
+        return fetch(RESTful_Host + url, options);
     }
 
     static get(url, data) {

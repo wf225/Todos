@@ -1,7 +1,7 @@
 import { takeEvery } from 'redux-saga'
 import { actionChannel, call, take, put, race, select } from 'redux-saga/effects'
 import * as actionTypes from '../constants/ActionTypes'
-import { Request } from '../actions/fetchRequest'
+import { Request } from '../utils/fetchRequest'
 import util from 'util'
 
 // restful api

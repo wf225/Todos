@@ -6,7 +6,7 @@ import { Utils } from '../components/Utils';
 import { SHOW_ALL } from "../constants/TodoFilters";
 import rootReducer from '../reducers'
 import { logger, crashReporter } from "../middlewares/logger"
-import sagaMonitor from '../sagaMonitor'
+import sagaMonitor from '../utils/sagaMonitor'
 import * as timerStatus from '../constants/TimerStatus'
 
 

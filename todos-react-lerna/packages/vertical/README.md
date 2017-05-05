@@ -34,7 +34,6 @@ lerna clean --yes
 lerna bootstrap --yes
 
 lerna run build
-
 lerna publish --skip-git --skip-npm
 ```
 
@@ -49,6 +48,7 @@ npm install --save express
 npm install --save body-parser
 npm install --save isomorphic-fetch
 ```
+
 
 ## TODO
 ```
