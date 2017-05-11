@@ -1,8 +1,5 @@
 # AWS
 
-### [Using the AWS Elastic Beanstalk Node.js Platforms](http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/create_deploy_nodejs.container.html)
-
-
 ## AWS CLI & EB CLI
   1. Install [python 3.4.3](https://www.python.org/downloads/release/python-343/).
 
@@ -14,7 +11,9 @@ pip install --upgrade --user awscli
   3. [The Elastic Beanstalk Command Line Interface (EB CLI)](http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb-cli3.html)
 
 
-## Locking Dependencies with NPM Shrinkwrap
+### [Using the AWS Elastic Beanstalk Node.js Platforms](http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/create_deploy_nodejs.container.html)
+
+### Locking Dependencies with NPM Shrinkwrap
 You can avoid upgrading dependencies by creating an npm-shrinkwrap.json file that locks down your application's dependencies to the current version.
 ```
 $ npm install
@@ -54,10 +53,14 @@ java -Djava.library.path=./DynamoDBLocal_lib -jar DynamoDBLocal.jar -sharedDb -i
 ## AWS - Lamada
 
 ### package
+```
 aws cloudformation package --template-file example.yaml --output-template-file serverless-output.yaml --s3-bucket todos-wubil
+```
 
 ### deploy
+```
 aws cloudformation deploy --template-file serverless-output.yaml --stack-name todos-wubil --capabilities CAPABILITY_IAM
+```
 
 ### apigateway
 [Create an API Using Amazon API Gateway](http://docs.aws.amazon.com/lambda/latest/dg/with-on-demand-https-example-configure-event-source.html)
@@ -145,3 +148,12 @@ $ aws apigateway get-method \
 - [AWS Serverless Application Model (AWS SAM) prescribes rules for expressing Serverless applications on AWS](https://github.com/awslabs/serverless-application-model)
 
 - [Create an API with Lambda Proxy Integration through a Proxy Resource](http://docs.aws.amazon.com/zh_cn/apigateway/latest/developerguide/api-gateway-create-api-as-simple-proxy-for-lambda.html#api-gateway-proxy-integration-lambda-function-nodejs)
+
+### Serverless
+
+#### [Lambda + Serverless Tutorial video](https://www.youtube.com/watch?v=71cd5XerKss)
+
+#### CloudFormation
+- [What is AWS CloudFormation?](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/Welcome.html)
+- [Using the AWS Command Line Interface](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cfn-using-cli.html)
+- [AWS Resource Types Reference](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html)

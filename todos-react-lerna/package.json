@@ -1,6 +1,5 @@
 {
   "devDependencies": {
-    "lerna": "^2.0.0-rc.3",
     "babel-cli": "^6.24.1",
     "babel-core": "^6.24.0",
     "babel-eslint": "^7.2.3",
@@ -14,9 +13,11 @@
     "css-loader": "^0.27.3",
     "enzyme": "^2.8.0",
     "jest": "^19.0.2",
+    "lerna": "^2.0.0-rc.3",
     "react-addons-test-utils": "^15.4.2",
     "react-test-renderer": "^15.4.2",
     "reselect": "^3.0.0",
+    "serverless": "^1.12.1",
     "sinon": "^2.1.0",
     "source-map-loader": "^0.2.1",
     "style-loader": "^0.16.1",

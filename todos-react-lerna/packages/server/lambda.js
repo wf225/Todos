@@ -1,6 +1,9 @@
 'use strict'
-const awsServerlessExpress = require('aws-serverless-express')
-const app = require('./app')
+const awsServerlessExpress = require('aws-serverless-express');
+
+process.env.AWS_LAMBDA = true;
+
+const app = require('./app');
 
 // NOTE: If you get ERR_CONTENT_DECODING_FAILED in your browser, this is likely
 // due to a compressed response (e.g. gzip) which has not been handled correctly
@@ -25,16 +28,16 @@ const binaryMimeTypes = [
   'text/plain',
   'text/text',
   'text/xml'
-]
-const server = awsServerlessExpress.createServer(app, null, binaryMimeTypes)
+];
+const server = awsServerlessExpress.createServer(app, null, binaryMimeTypes);
 
-exports.handler = (event, context) => awsServerlessExpress.proxy(server, event, context)
+exports.handler = (event, context) => awsServerlessExpress.proxy(server, event, context);
 
+// Test code
 // exports.handler = function(event, context, callback) {
 //     var name = "World";
 //     var responseCode = 200;
 //     console.log("request: " + JSON.stringify(event));
- 
 //     var responseBody = {
 //         message: "Hello " + name + "!",
 //         input: event

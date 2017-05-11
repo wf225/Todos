@@ -4,6 +4,9 @@ let Todos = require("./TodosDb");
 module.exports = function (app) {
 
   // RESTful api --------------------------------------------------------------
+  app.get('/', function (req, res) {
+    res.send('Hello World!');
+  });
 
   // get all todos
   app.get('/api/todos', function (req, res) {
