@@ -68,7 +68,7 @@ The AWS Command Line Interface is a unified tool to manage your AWS services. Wi
     ```
 
   - [Working with Services in the SDK for JavaScript](http://docs.aws.amazon.com/sdk-for-javascript/v2/developer-guide/working-with-services.html)
-  ![](http://docs.aws.amazon.com/sdk-for-javascript/v2/developer-guide/images/request-response.png)
+  ![](images/request-response.png)
 
   - [**Examples: AWS SDK for JavaScript**](http://docs.aws.amazon.com/sdk-for-javascript/v2/developer-guide/sdk-code-samples.html)
 
@@ -84,7 +84,7 @@ The AWS Command Line Interface is a unified tool to manage your AWS services. Wi
 
 ## [<span id="anchor_dynamodb">Amazon DynamoDB</span>](http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Introduction.html)
   - [DynamoDB Concepts](http://docs.aws.amazon.com/amazondynamodb/latest/gettingstartedguide/quick-intro.html)  
-    ![](http://cdn3.infoqstatic.com/statics_s2_20170510-0410/resource/articles/aws-dynamodb-dive-in/zh/resources/dynamo-partition.png)
+    ![](images/dynamo-partition.png)
 
   - Running DynamoDB on Your Computer: 
     1. [Download DynamoDB](http://docs.aws.amazon.com/amazondynamodb/latest/gettingstartedguide/GettingStarted.Download.html).
@@ -116,10 +116,10 @@ The AWS Command Line Interface is a unified tool to manage your AWS services. Wi
   - [Create a HelloWorld Lambda Function](http://docs.aws.amazon.com/lambda/latest/dg/getting-started-create-function.html)
   
   - [Using AWS Lambda with Amazon S3](http://docs.aws.amazon.com/lambda/latest/dg/with-s3.html)  
-    ![](http://docs.aws.amazon.com/lambda/latest/dg/images/push-s3-example-10.png)
+    ![](images/push-s3-example-10.png)
 
   - [Using AWS Lambda with Amazon API Gateway](http://docs.aws.amazon.com/lambda/latest/dg/with-on-demand-https-example.html)  
-    ![](https://d0.awsstatic.com/product-marketing/API%20Gateway/APIGateway_Diagram.png)
+    ![](images/APIGateway_Diagram.png)
 
 - - -
 
@@ -167,7 +167,7 @@ The AWS Command Line Interface is a unified tool to manage your AWS services. Wi
   AWS CloudFormation is a service that helps you model and set up your Amazon Web Services resources so that you can spend less time managing those resources and more time focusing on your applications that run in AWS.
 
 - [How Does AWS CloudFormation Work?](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cfn-whatis-howdoesitwork.html)  
-![](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/images/create-stack-diagram.png)
+![](images/create-stack-diagram.png)
 
 - [Working with Stacks Using the AWS CLI](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cfn-using-cli.html)
 
