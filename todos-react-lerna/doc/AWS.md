@@ -11,8 +11,10 @@
 - [Serverless](#anchor_serverless)
 - [CloudFormation](#anchor_cloudformation)
 
+- - -
+<a id="anchor_cli"></a>
 
-## [<span id="anchor_cli">AWS Command Line Interface</span>](http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-welcome.html)
+## [AWS Command Line Interface](http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-welcome.html)
 The AWS Command Line Interface is a unified tool to manage your AWS services. With just one tool to download and configure, you can control multiple AWS services from the command line and automate them through scripts.
 
   - [Installing the AWS Command Line Interface](http://docs.aws.amazon.com/cli/latest/userguide/installing.html)  
@@ -50,8 +52,9 @@ The AWS Command Line Interface is a unified tool to manage your AWS services. Wi
     ```
 
 - - -
+<a id="anchor_accesskey"></a>
 
-## [<span id="anchor_accesskey">Access Keys</span>](http://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html)
+## [Access Keys](http://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html)
   To create, modify, or delete a user's access keys
   1. Sign in to the IAM console at [https://console.aws.amazon.com/iam/](https://console.aws.amazon.com/iam/).
   1. In the navigation pane, choose Users.
@@ -59,8 +62,9 @@ The AWS Command Line Interface is a unified tool to manage your AWS services. Wi
   1. To create an access key, choose Create Access Key and then choose Download Credentials to save the access key ID and secret access key to a CSV file on your computer.
 
 - - -
+<a id="anchor_sdk"></a>
 
-## [<span id="anchor_sdk">AWS SDK for JavaScript</span>](http://docs.aws.amazon.com/sdk-for-javascript/v2/developer-guide/welcome.html)
+## [AWS SDK for JavaScript](http://docs.aws.amazon.com/sdk-for-javascript/v2/developer-guide/welcome.html)
 
   - [Installing the SDK for JavaScript](http://docs.aws.amazon.com/sdk-for-javascript/v2/developer-guide/installing-jssdk.html)
     ```
@@ -73,16 +77,18 @@ The AWS Command Line Interface is a unified tool to manage your AWS services. Wi
   - [**Examples: AWS SDK for JavaScript**](http://docs.aws.amazon.com/sdk-for-javascript/v2/developer-guide/sdk-code-samples.html)
 
 - - -
+<a id="anchor_s3"></a>
 
-## [<span id="anchor_s3">Amazon S3</span>](http://docs.aws.amazon.com/AmazonS3/latest/dev/Welcome.html)
+## [Amazon S3](http://docs.aws.amazon.com/AmazonS3/latest/dev/Welcome.html)
   - [Amazon S3 Concepts](http://docs.aws.amazon.com/AmazonS3/latest/dev/Introduction.html#CoreConcepts)
 
   - [Hosting a Static Website on Amazon S3](http://docs.aws.amazon.com/AmazonS3/latest/dev/WebsiteHosting.html)
     - [Configure a Bucket for Website Hosting](http://docs.aws.amazon.com/AmazonS3/latest/dev/HowDoIWebsiteConfiguration.html)
 
 - - -
+<a id="anchor_dynamodb"></a>
 
-## [<span id="anchor_dynamodb">Amazon DynamoDB</span>](http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Introduction.html)
+## [Amazon DynamoDB](http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Introduction.html)
   - [DynamoDB Concepts](http://docs.aws.amazon.com/amazondynamodb/latest/gettingstartedguide/quick-intro.html)  
     ![](images/dynamo-partition.png)
 
@@ -109,8 +115,9 @@ The AWS Command Line Interface is a unified tool to manage your AWS services. Wi
   - [**Examples: Develop DynamoDB with Node.js**](http://docs.aws.amazon.com/amazondynamodb/latest/gettingstartedguide/GettingStarted.NodeJs.html)
 
 - - -
+<a id="anchor_lamada"></a>
 
-## [<span id="anchor_lamada">AWS Lamada</span>](http://docs.aws.amazon.com/lambda/latest/dg/welcome.html)
+## [AWS Lamada](http://docs.aws.amazon.com/lambda/latest/dg/welcome.html)
   - AWS Lambda is a compute service that lets you run code without provisioning or managing servers. AWS Lambda executes your code only when needed and scales automatically, from a few requests per day to thousands per second. You pay only for the compute time you consume - there is no charge when your code is not running.
 
   - [Create a HelloWorld Lambda Function](http://docs.aws.amazon.com/lambda/latest/dg/getting-started-create-function.html)
@@ -122,8 +129,9 @@ The AWS Command Line Interface is a unified tool to manage your AWS services. Wi
     ![](images/APIGateway_Diagram.png)
 
 - - -
+<a id="anchor_apigateway"></a>
 
-## [<span id="anchor_apigateway">Amazon API Gateway</span>](http://docs.aws.amazon.com/apigateway/latest/developerguide/welcome.html)
+## [Amazon API Gateway](http://docs.aws.amazon.com/apigateway/latest/developerguide/welcome.html)
   - [API Gateway Concepts](http://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-basic-concept.html)
 
   - [Create an API Gateway API from an Example](http://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-create-api-from-example.html)
@@ -135,8 +143,9 @@ The AWS Command Line Interface is a unified tool to manage your AWS services. Wi
   - [Create an API with Lambda Proxy Integration through a Proxy Resource](http://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-create-api-as-simple-proxy-for-lambda.html#api-gateway-proxy-integration-lambda-function-nodejs)
 
 - - -
+<a id="anchor_serverless"></a>
 
-## [<span id="anchor_serverless">Serverless</span>](https://github.com/serverless/serverless)
+## [Serverless](https://github.com/serverless/serverless)
   - The Serverless Framework helps you develop and deploy your AWS Lambda functions.
   - You can start from [**Lambda + Serverless Tutorial video**](https://www.youtube.com/watch?v=71cd5XerKss).
 
@@ -162,7 +171,8 @@ The AWS Command Line Interface is a unified tool to manage your AWS services. Wi
 
 - - -
 
-## <span id="anchor_cloudformation">CloudFormation</span>
+<a id="anchor_cloudformation"></a>
+## CloudFormation
 - [What is AWS CloudFormation?](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/Welcome.html)  
   AWS CloudFormation is a service that helps you model and set up your Amazon Web Services resources so that you can spend less time managing those resources and more time focusing on your applications that run in AWS.
 
