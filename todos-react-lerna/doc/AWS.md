@@ -147,19 +147,20 @@ The AWS Command Line Interface is a unified tool to manage your AWS services. Wi
 
 ## [Serverless](https://github.com/serverless/serverless)
   - The Serverless Framework helps you develop and deploy your AWS Lambda functions.
-  - You can start from [**Lambda + Serverless Tutorial video**](https://www.youtube.com/watch?v=71cd5XerKss).
+  - You can start from [**Lambda + Serverless Tutorial video**](https://www.youtube.com/watch?v=71cd5XerKss).  
+    Or you can start from [Quick Start](https://github.com/serverless/serverless#quick-start).
 
-  - Or you can start from [Quick Start](https://github.com/serverless/serverless#quick-start).
+  - Advanced
 
-  - [User Guide - Functions](https://serverless.com/framework/docs/providers/aws/guide/functions/s)
+    - [User Guide - Functions](https://serverless.com/framework/docs/providers/aws/guide/functions/s)
 
-  - [User Guide - Events](https://serverless.com/framework/docs/providers/aws/guide/events/)
+    - [User Guide - Events](https://serverless.com/framework/docs/providers/aws/guide/events/)
 
-  - [User Guide - Resources](https://serverless.com/framework/docs/providers/aws/guide/resources/)
+    - [User Guide - Resources](https://serverless.com/framework/docs/providers/aws/guide/resources/)
 
-  - [User Guide - Packaging](https://serverless.com/framework/docs/providers/aws/guide/packaging/)
+    - [User Guide - Packaging](https://serverless.com/framework/docs/providers/aws/guide/packaging/)
 
-  - [User Guide - Deploying](https://serverless.com/framework/docs/providers/aws/guide/deploying/)
+  - [Deploying](https://serverless.com/framework/docs/providers/aws/guide/deploying/)
     ```
     serverless deploy
     ```
