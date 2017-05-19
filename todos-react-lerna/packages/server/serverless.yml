@@ -11,7 +11,7 @@
 #
 # Happy Coding!
 
-service: wubil-todos-test # NOTE: update this with your service name
+service: wubil-todos # NOTE: update this with your service name
 
 # You can pin your service to only deploy with a specific Serverless version
 # Check out our docs for more details
@@ -26,37 +26,24 @@ provider:
   role: arn:aws:iam::414840001553:role/wubil-lambda-microservice-rule
   versionFunctions: false
 
-# you can add statements to the Lambda function's IAM Role here
-#  iamRoleStatements:
-#    - Effect: "Allow"
-#      Action:
-#        - "s3:ListBucket"
-#      Resource: { "Fn::Join" : ["", ["arn:aws:s3:::", { "Ref" : "ServerlessDeploymentBucket" } ] ]  }
-#    - Effect: "Allow"
-#      Action:
-#        - "s3:PutObject"
-#      Resource:
-#        Fn::Join:
-#          - ""
-#          - - "arn:aws:s3:::"
-#            - "Ref" : "ServerlessDeploymentBucket"
-#            - "/*"
-
 # you can define service wide environment variables here
 #  environment:
 #    variable1: value1
 
 # you can add packaging information here
 package:
-#  include:
-#    - include-me.js
-#    - include-me-dir/**
+  # include:
+  #   - dist/**
+  #   - node_modules/**
   exclude:
-    - webpack.config.js
-    - package.json
-    - dist/**
-    - samples/**
+    - __tests__/**
+    - coverage/**
     - node_modules/aws-sdk/**
+    - node_modules/jest*/**
+    - src/**
+    - package.json
+    - webpack*.js
+    - lambda_*.js
 
 functions:
   todos:
@@ -69,11 +56,21 @@ functions:
       TABLE_NAME: Todos
     events:
       - http:
+          path: api/todo
+          method: post
+          cors: true 
+      - http:
           path: api/todo/{id}
-          method: any
+          method: put
+          cors: true
+      - http:
+          path: api/todo/{id}/{title}
+          method: delete
+          cors: true
       - http:
           path: api/todos
           method: any
+          cors: true
 
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
@@ -105,38 +102,43 @@ functions:
 #      variable2: value2
 
 # you can add CloudFormation resource templates here
-resources:
-  Resources:
-    ApiGatewayDeploymentProd:       
-      Type: "AWS::ApiGateway::Deployment"
-      Properties: 
-        RestApiId: 
-          Ref: "ApiGatewayRestApi"
-        Description: "Todos-prod"
-        StageName: "prod"
-      DependsOn: ["ApiGatewayMethodApiTodoIdVarAny", "ApiGatewayMethodApiTodosAny"]
-    DynamoDB:
-      Type: AWS::DynamoDB::Table
-      Properties:
-        TableName: Todos_2
-        AttributeDefinitions:
-          - AttributeName: id
-            AttributeType: S
-          - AttributeName: title
-            AttributeType: S
-        KeySchema:
-          - AttributeName: id
-            KeyType: HASH
-          - AttributeName: title
-            KeyType: RANGE
-        ProvisionedThroughput:
-          ReadCapacityUnits: 10
-          WriteCapacityUnits: 10
-    # S3Bucket:
-    #   Type: AWS::S3::Bucket
-    #   Properties:
-    #     BucketName: wubil-todos-test
-  Outputs:
-      NewOutput:
-        Description: "Description for the output"
-        Value: "Some output value"
+# resources:
+#   Resources:
+#     ApiGatewayDeploymentProd:       
+#       Type: "AWS::ApiGateway::Deployment"
+#       Properties: 
+#         RestApiId: 
+#           Ref: "ApiGatewayRestApi"
+#         Description: "Todos-prod"
+#         StageName: "prod"
+#       DependsOn: [
+#         "ApiGatewayMethodApiTodoPost",
+#         "ApiGatewayMethodApiTodoIdVarPut",
+#         "ApiGatewayMethodApiTodoIdVarTitleVarDelete",
+#         "ApiGatewayMethodApiTodosAny"
+#       ]
+#     DynamoDB:
+#       Type: AWS::DynamoDB::Table
+#       Properties:
+#         TableName: Todos_2
+#         AttributeDefinitions:
+#           - AttributeName: id
+#             AttributeType: S
+#           - AttributeName: title
+#             AttributeType: S
+#         KeySchema:
+#           - AttributeName: id
+#             KeyType: HASH
+#           - AttributeName: title
+#             KeyType: RANGE
+#         ProvisionedThroughput:
+#           ReadCapacityUnits: 10
+#           WriteCapacityUnits: 10
+#     # S3Bucket:
+#     #   Type: AWS::S3::Bucket
+#     #   Properties:
+#     #     BucketName: wubil-todos-deploy
+#   Outputs:
+#       NewOutput:
+#         Description: "Description for the output"
+#         Value: "Some output value"

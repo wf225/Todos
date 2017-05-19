@@ -17,13 +17,23 @@
     "redux-thunk": "^2.2.0",
     "todos-platform": "^0.1.1"
   },
-  "devDependencies": {
-  },
+  "devDependencies": {},
+  "config": {
+    "s3BucketName": "dev-wubil-todos",
+    "region": "us-east-1",
+    "cloudFormationStackName": "wubil-todos-test-dev",
+    "functionName": "YOUR_SERVERLESS_EXPRESS_LAMBDA_FUNCTION_NAME",
+    "accountId": "YOUR_ACCOUNT_ID"
+  },  
   "scripts": {
     "prebuild": "webpack --config webpack.dll.config.js",
-    "build": "webpack",
-    "prepublish": "npm run build",
-    "test": "jest -u --coverage"
+    "build": "npm run webpack-prod",
+    "build-dev": "npm run webpack-dev",
+    "create-bucket": "node config/s3_createbucket.js %npm_package_config_s3BucketName% && node config/s3_setbucketwebsite.js %npm_package_config_s3BucketName% index.html error.html",      
+    "deploy": "aws s3 sync ./dist s3://%npm_package_config_s3BucketName% --delete --acl public-read",
+    "test": "jest -u --coverage",
+    "webpack-dev": "webpack --config webpack.dev.js",
+    "webpack-prod": "webpack --config webpack.prod.js"
   },
   "jest": {
     "setupFiles": [

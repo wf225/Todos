@@ -7,11 +7,25 @@
   "license": "ISC",
   "dependencies": {
     "aws-sdk": "^2.48.0",
-    "aws-serverless-express": "^2.2.0",
+    "aws-serverless-express": "^3.0.0",
     "body-parser": "^1.17.1",
     "compression": "^1.6.2",
     "cors": "^2.8.3",
+    "expose-loader": "^0.7.3",
     "express": "^4.15.2",
     "isomorphic-fetch": "^2.2.1"
+  },
+  "devDependencies": {
+    "jest": "^19.0.2"
+  },
+  "scripts": {
+    "start": "node src/app.local.js",
+    "build": "npm run webpack-prod",
+    "build-dev": "npm run webpack-dev",
+    "package": "serverless package",
+    "deploy": "serverless deploy function --function todos",
+    "test": "jest -u --coverage",
+    "webpack-dev": "webpack --config webpack.dev.js",
+    "webpack-prod": "webpack --config webpack.prod.js"
   }
 }

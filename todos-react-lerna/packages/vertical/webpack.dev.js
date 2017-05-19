@@ -7,11 +7,11 @@ module.exports = {
         app: './src/index.js'
     },
     output: {
-        path: path.join(__dirname, './dist'),
+        path: path.join(__dirname, './build'),
         filename: 'app.bundle.js'
         // filename: '[name].[chunkhash].js'
     },
-    // devtool: 'source-map',
+    devtool: 'source-map',
     module: {
         rules: [
             {
@@ -34,7 +34,13 @@ module.exports = {
     plugins: [
         new webpack.DllReferencePlugin({
             context: '.',
-            manifest: require("./dist/vendor.manifest.json"),
+            manifest: require("./build/vendor.manifest.json"),
+        }),
+        new webpack.DefinePlugin({
+            'process.env': {
+                NODE_ENV: JSON.stringify('dev'), // '"prod"'
+                API_HOST: JSON.stringify('')
+            }
         })
     ]
 }

@@ -19,13 +19,13 @@ module.exports = {
         vendor: vendors
     },
     output: {
-        path: path.join(__dirname, './dist'),
+        path: path.join(__dirname, './build'),
         filename: '[name].bundle.js',
         library: '[name]_library'
     },
     plugins: [
         new webpack.DllPlugin({
-            path: './dist/[name].manifest.json',
+            path: './build/[name].manifest.json',
             name: '[name]_library',
         })
     ]

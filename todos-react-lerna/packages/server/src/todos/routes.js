@@ -1,29 +1,25 @@
 // let Todos = require("./TodosJson");
-let Todos = require("./TodosDb");
+let Todos = require("./TodosService");
 
 module.exports = function (app) {
 
   // RESTful api --------------------------------------------------------------
-  app.get('/', function (req, res) {
-    res.send('Hello World!');
-  });
-
   // get all todos
   app.get('/api/todos', function (req, res) {
     Todos.getAll((err, result) => {
       if (err) res.send(err);
-      return res.end(result);
+      return res.status(200).json(result);
     });
   });
 
   // create a todo
-  app.post('/api/todos', function (req, res) {
+  app.post('/api/todo', function (req, res) {
     let item = req.body
     Todos.add(item, (err, result) => {
       if (err) {
-        return res.status(400).send({ message: "Add todo failed: " + err.message });
+        return res.status(400).json({ message: "Add todo failed: " + err.message });
       }
-      return res.end(result);
+      return res.status(200).json(result);
     });
   });
 
@@ -33,9 +29,9 @@ module.exports = function (app) {
     let title = req.params.title;
     Todos.remove(id, title, (err, result) => {
       if (err) {
-        return res.status(400).send({ message: "Delete todo failed: " + err });
+        return res.status(400).json({ message: "Delete todo failed: " + err });
       }
-      return res.end(result);
+      return res.status(200).json(result);
     });
   });
 
@@ -45,9 +41,9 @@ module.exports = function (app) {
     let todo = req.body
     Todos.update(todo, (err, result) => {
       if (err) {
-        return res.status(400).send({ message: "Update todo failed: " + err });
+        return res.status(400).json({ message: "Update todo failed: " + err });
       }
-      return res.end(result);
+      return res.status(200).json(result);
     });
   });
 
@@ -56,9 +52,9 @@ module.exports = function (app) {
     let isCompleted = req.body.isCompleted;
     Todos.toggleAll(isCompleted, (err, result) => {
       if (err) {
-        return res.status(400).send({ message: "Toggle all todo failed: " + err });
+        return res.status(400).json({ message: "Toggle all todo failed: " + err });
       }
-      return res.end(result);
+      return res.status(200).json(result);
     });
   });
 
@@ -66,9 +62,9 @@ module.exports = function (app) {
   app.delete('/api/todos', function (req, res) {
     Todos.removeCompleted((err, result) => {
       if (err) {
-        return res.status(400).send({ message: "Remove completed all todo failed: " + err });
+        return res.status(400).json({ message: "Remove completed all todo failed: " + err });
       }
-      return res.end(result);
+      return res.status(200).json(result);
     });
   });
 

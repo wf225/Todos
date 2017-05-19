@@ -22,7 +22,7 @@ function* fetchAll(action) {
 //
 function* add(action) {
   const result = yield call(() =>
-    Request.post("/api/todos", action.data)
+    Request.post("/api/todo", action.data)
       .then((response) => response.json())
   );
   yield put({ type: actionTypes.ADD_TODO_SUCCEEDED, payload: result });

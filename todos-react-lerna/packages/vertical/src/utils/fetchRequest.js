@@ -1,6 +1,6 @@
 import fetch from 'isomorphic-fetch'
 
-const RESTful_Host = "https://aza1oyphg6.execute-api.us-east-1.amazonaws.com/staging1";
+let api_host = process.env.API_HOST;
 
 export class Request {
 
@@ -12,7 +12,7 @@ export class Request {
         if (data) {
             options.body = JSON.stringify(data);
         }
-        return fetch(RESTful_Host + url, options);
+        return fetch(api_host + url, options);
     }
 
     static get(url, data) {
@@ -38,7 +38,7 @@ export class Request {
 }
 
 Request._headers = {
-    'Accept': 'application/json',
+    'Accept': '*',
     'Content-Type': 'application/json'
 };
 

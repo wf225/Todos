@@ -1,6 +1,5 @@
 # dependencies
 /node_modules
-/node_modules_001
 
 # testing
 /coverage
@@ -8,9 +7,11 @@
 
 # production demo
 /dist
+/.serverless
 
 # production lib
 /lib
 
 # misc
 .DS_Store
+/samples

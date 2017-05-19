@@ -8,10 +8,10 @@ const dynamodb = new AWS.DynamoDB();
 const docClient = new AWS.DynamoDB.DocumentClient();
 const tableName = "Todos";
 
-function Todos() { }
+function TodosService() { }
 
 //
-Todos.createTable = () => {
+TodosService.createTable = () => {
     let params = {
         TableName: tableName,
         KeySchema: [
@@ -38,25 +38,26 @@ Todos.createTable = () => {
 }
 
 //
-Todos.getAll = (callback) => {
+TodosService.getAll = (callback) => {
     var params = {
         TableName: tableName
     };
 
-    console.log("Scanning table.");
+    // console.log("Scanning table.");
     docClient.scan(params, (err, data) => {
         if (err) {
             console.error("Unable to scan the table. Error JSON:", JSON.stringify(err, null, 2));
         } else {
             console.log("Scan succeeded.");
-            return callback(err, JSON.stringify(data.Items));
+            return callback(err, data.Items);
         }
     });
 }
 
 //
-Todos.add = (item, callback) => {
-    callback(null, JSON.stringify(item));
+TodosService.add = (item, callback) => {
+    // To improve the user experience, execute the callback first.
+    // callback(null, item);
 
     var params = {
         TableName: tableName,
@@ -69,21 +70,19 @@ Todos.add = (item, callback) => {
         }
     };
 
-    console.log("Adding a new item...");
     docClient.put(params, function (err, data) {
         if (err) {
             console.error("Unable to add item. Error JSON:", JSON.stringify(err, null, 2));
             return callback(err);
         } else {
-            console.log("Added item:", JSON.stringify(data, null, 2));
-            // return callback(err, JSON.stringify(item));
+            return callback(err, item);
         }
     });
 };
 
 //
-Todos.remove = (id, title, callback) => {
-    callback(null, JSON.stringify({ id: id }));
+TodosService.remove = (id, title, callback) => {
+    // callback(null, JSON.stringify({ id, title }));
 
     var params = {
         TableName: tableName,
@@ -93,21 +92,19 @@ Todos.remove = (id, title, callback) => {
         }
     };
 
-    console.log("Attempting a conditional delete...");
     docClient.delete(params, function (err, data) {
         if (err) {
             console.error("Unable to delete item. Error JSON:", JSON.stringify(err, null, 2));
             return callback(err);
         } else {
-            console.log("DeleteItem succeeded:", JSON.stringify(data, null, 2));
-            // return callback(err, JSON.stringify({ id: id }));
+            return callback(err, { id, title });
         }
     });
 };
 
 //
-Todos.update = (item, callback) => {
-    callback(null, JSON.stringify(item));
+TodosService.update = (item, callback) => {
+    // callback(null, JSON.stringify(item));
 
     var params = {
         TableName: tableName,
@@ -127,21 +124,19 @@ Todos.update = (item, callback) => {
         ReturnValues: "UPDATED_NEW"
     };
 
-    console.log("Updating the item...");
     docClient.update(params, function (err, data) {
         if (err) {
             console.error("Unable to update item. Error JSON:", JSON.stringify(err, null, 2));
             return callback(err);
         } else {
-            console.log("UpdateItem succeeded:", JSON.stringify(data, null, 2));
-            // return callback(err, JSON.stringify(item));
+            return callback(err, item);
         }
     });
 };
 
 //
-Todos.toggleAll = (isCompleted, callback) => {
-    callback(null, JSON.stringify({ isCompleted }));
+TodosService.toggleAll = (isCompleted, callback) => {
+    // callback(null, JSON.stringify({ isCompleted }));
 
     var params = {
         TableName: tableName
@@ -157,39 +152,39 @@ Todos.toggleAll = (isCompleted, callback) => {
             data.Items.forEach(function (todo) {
                 if (todo.isCompleted != isCompleted) {
                     todo.isCompleted = isCompleted;
-                    Todos.update(todo, (err, data) => { });
+                    TodosService.update(todo, (err, data) => { });
                 }
             });
 
-            // return callback(err, JSON.stringify({ isCompleted }));
+            return callback(err, JSON.stringify({ isCompleted }));
         }
     });
 };
 
 //
-Todos.removeCompleted = (callback) => {
-    callback(null, JSON.stringify({}));
+TodosService.removeCompleted = (callback) => {
+    // callback(null, JSON.stringify({}));
 
     var params = {
         TableName: tableName
     };
 
-    console.log("Scanning table.");
+    // console.log("Scanning table.");
     docClient.scan(params, (err, data) => {
         if (err) {
             console.error("Unable to scan the table. Error JSON:", JSON.stringify(err, null, 2));
             return callback(err);
         } else {
-            console.log("Scan succeeded.");
+            // console.log("Scan succeeded.");
             data.Items.forEach(function (todo) {
                 if (todo.isCompleted) {
-                    Todos.remove(todo.id, todo.title, (err, data) => { });
+                    TodosService.remove(todo.id, todo.title, (err, data) => { });
                 }
             });
 
-            // return callback(err, JSON.stringify({}));
+            return callback(err, JSON.stringify({}));
         }
     });
 };
 
-module.exports = Todos;
+module.exports = TodosService;

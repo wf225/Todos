@@ -14,6 +14,9 @@ npm install --save-dev babel-preset-env babel-preset-react
 npm install --save-dev babel-preset-es2015
 npm install --save-dev babel-cli
 
+npm install --save babel-runtime
+npm install --save-dev babel-plugin-transform-runtime
+
 npm install --save-dev css-loader style-loader
 npm install --save-dev jest babel-jest react-test-renderer
 npm install --save-dev enzyme react-addons-test-utils

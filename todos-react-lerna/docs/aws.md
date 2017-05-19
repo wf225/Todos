@@ -1,18 +1,16 @@
-# AWS
-  How to build a website use S3 + Lamada + API Gateway.
+# AWS Build a website use S3 + Lamada + API Gateway.
 
-- [AWS Command Line Interface](#anchor_cli)
-- [Access Keys](#anchor_accesskey)
-- [AWS SDK for JavaScript](#anchor_sdk)
-- [Amazon S3](#anchor_s3)
-- [Amazon DynamoDB](#anchor_dynamodb)
-- [AWS Lamada](#anchor_lamada)
-- [Amazon API Gateway](#anchor_apigateway)
-- [Serverless](#anchor_serverless)
-- [CloudFormation](#anchor_cloudformation)
+- [AWS Command Line Interface](#aws-command-line-interface)
+- [Access Keys](#access-keys)
+- [AWS SDK for JavaScript](#aws-sdk-for-javascript)
+- [Amazon S3](#amazon-s3)
+- [Amazon DynamoDB](#amazon-dynamodb)
+- [AWS Lamada](#aws-lamada)
+- [Amazon API Gateway](#amazon-api-gateway)
+- [Serverless](#serverless)
+- [CloudFormation](#cloudformation)
 
 - - -
-<a id="anchor_cli"></a>
 
 ## [AWS Command Line Interface](http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-welcome.html)
 The AWS Command Line Interface is a unified tool to manage your AWS services. With just one tool to download and configure, you can control multiple AWS services from the command line and automate them through scripts.
@@ -52,7 +50,6 @@ The AWS Command Line Interface is a unified tool to manage your AWS services. Wi
     ```
 
 - - -
-<a id="anchor_accesskey"></a>
 
 ## [Access Keys](http://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html)
   To create, modify, or delete a user's access keys
@@ -81,6 +78,8 @@ The AWS Command Line Interface is a unified tool to manage your AWS services. Wi
 
 ## [Amazon S3](http://docs.aws.amazon.com/AmazonS3/latest/dev/Welcome.html)
   - [Amazon S3 Concepts](http://docs.aws.amazon.com/AmazonS3/latest/dev/Introduction.html#CoreConcepts)
+
+  - [Using s3 Commands with the AWS Command Line Interface](http://docs.aws.amazon.com/cli/latest/userguide/using-s3-commands.html)
 
   - [Hosting a Static Website on Amazon S3](http://docs.aws.amazon.com/AmazonS3/latest/dev/WebsiteHosting.html)
     - [Configure a Bucket for Website Hosting](http://docs.aws.amazon.com/AmazonS3/latest/dev/HowDoIWebsiteConfiguration.html)
@@ -170,9 +169,29 @@ The AWS Command Line Interface is a unified tool to manage your AWS services. Wi
     serverless deploy function --function myFunction
     ```
 
+  - Common commands
+    ```
+    config ........................ Configure Serverless
+    config credentials ............ Configures a new provider profile for the Serverless Framework
+    create ........................ Create new Serverless service
+    install ....................... Install a Serverless service from GitHub
+    package ....................... Packages a Serverless service
+    package function .............. undefined
+    deploy ........................ Deploy a Serverless service
+    deploy function ............... Deploy a single function from the service
+    deploy list ................... List deployed version of your Serverless Service
+    invoke ........................ Invoke a deployed function
+    invoke local .................. Invoke function locally
+    info .......................... Display information about the service
+    logs .......................... Output the logs of a deployed function
+    metrics ....................... Show metrics for a specific function
+    remove ........................ Remove Serverless service and all resources
+    rollback ...................... Rollback the Serverless service to a specific deployment
+    slstats ....................... Enable or disable stats
+    ```
+
 - - -
 
-<a id="anchor_cloudformation"></a>
 ## CloudFormation
 - [What is AWS CloudFormation?](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/Welcome.html)  
   AWS CloudFormation is a service that helps you model and set up your Amazon Web Services resources so that you can spend less time managing those resources and more time focusing on your applications that run in AWS.
@@ -182,7 +201,7 @@ The AWS Command Line Interface is a unified tool to manage your AWS services. Wi
 
 - [Working with Stacks Using the AWS CLI](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cfn-using-cli.html)
 
-  - Example 1: package
+  - Example 1: [Uploading Local Artifacts to an S3 Bucket](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-cli-package.html)
   ```
   aws cloudformation package --template-file example.yaml --output-template-file serverless-output.yaml --s3-bucket <your-bucket-name>
   ```
