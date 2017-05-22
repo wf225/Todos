@@ -1,6 +1,5 @@
 import * as actionTypes from '../constants/ActionTypes'
 import * as timerStatus from '../constants/TimerStatus'
-import fetch from 'isomorphic-fetch'
 
 //
 export const fetchAll = (id, title, seconds) => {

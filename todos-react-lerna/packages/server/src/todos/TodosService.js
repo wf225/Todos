@@ -136,7 +136,7 @@ TodosService.update = (item, callback) => {
 
 //
 TodosService.toggleAll = (isCompleted, callback) => {
-    // callback(null, JSON.stringify({ isCompleted }));
+    // callback(null, { isCompleted });
 
     var params = {
         TableName: tableName
@@ -156,14 +156,14 @@ TodosService.toggleAll = (isCompleted, callback) => {
                 }
             });
 
-            return callback(err, JSON.stringify({ isCompleted }));
+            return callback(err, { isCompleted: isCompleted });
         }
     });
 };
 
 //
 TodosService.removeCompleted = (callback) => {
-    // callback(null, JSON.stringify({}));
+    // callback(null, {});
 
     var params = {
         TableName: tableName
@@ -182,7 +182,7 @@ TodosService.removeCompleted = (callback) => {
                 }
             });
 
-            return callback(err, JSON.stringify({}));
+            return callback(err, {});
         }
     });
 };
