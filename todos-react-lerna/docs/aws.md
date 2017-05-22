@@ -16,6 +16,11 @@
 The AWS Command Line Interface is a unified tool to manage your AWS services. With just one tool to download and configure, you can control multiple AWS services from the command line and automate them through scripts.
 
   - [Installing the AWS Command Line Interface](http://docs.aws.amazon.com/cli/latest/userguide/installing.html)  
+    For macos, recommend to use homebrew install it.
+    ```
+    brew install awscli
+    ```
+
     Verify that the AWS CLI installed correctly by running
     ```
     $ aws --version
