@@ -2,7 +2,6 @@
 const fs = require('fs');
 const path = require('path');
 const webpack = require('webpack');
-const EnvDefinePlugin = require('./webpack-env-define-plugin');
 
 
 var nodeModules = {};

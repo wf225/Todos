@@ -2,7 +2,7 @@
 const fs = require('fs');
 const path = require('path');
 const webpack = require('webpack');
-const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+
 
 var nodeModules = {};
 fs.readdirSync('node_modules')

@@ -4,6 +4,13 @@ let Todos = require("./TodosService");
 module.exports = function (app) {
 
   // RESTful api --------------------------------------------------------------
+  app.get('/api/createTable', function (req, res) {
+    Todos.createTable((err, result) => {
+      if (err) res.send(err);
+      // return res.status(200).json(result);
+    });
+  });
+
   // get all todos
   app.get('/api/todos', function (req, res) {
     Todos.getAll((err, result) => {
