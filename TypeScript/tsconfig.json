@@ -1,26 +1,21 @@
 {
     "compilerOptions": {
         // "module": "es6",
-        // "noImplicitAny": true,
-        // "removeComments": true,
-        // "preserveConstEnums": true,        
-        // "sourceMap": false
-        // "outFile": "output/tsc.js",
         "outDir": "build",
         "target": "es5",
         "module": "commonjs",
         "moduleResolution": "node",
-        "sourceMap": false,
-        "emitDecoratorMetadata": true,
-        "experimentalDecorators": true,
+        "sourceMap": true,
         "inlineSources": true,
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,        
         "declaration": true,
         "removeComments": true,
         "noImplicitAny": true,
         "jsx": "react"
     },
     "include": [
-        "src/**/*"
+        "src_jest/**/*"
     ],
     "exclude": [
         "node_modules",
