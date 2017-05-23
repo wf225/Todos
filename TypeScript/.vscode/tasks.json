@@ -45,6 +45,8 @@
             "taskName": "build",
             "command": "tsc",
             "isShellCommand": true,
+            "args": ["-p", "tsconfig.dev.json"],
+            "showOutput": "silent",
             "problemMatcher": "$tsc"
         }
     ]

@@ -16,7 +16,6 @@
         "src_jest/**/*"
     ],
     "exclude": [
-        "**/*.test.*",
         "node_modules",
         "dist",
         "build"

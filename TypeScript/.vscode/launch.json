@@ -10,9 +10,9 @@
     //   "name": "Launch Program",
     //   "program": "${file}",
     //   "outFiles": ["output"]
-    // },
-    
+    // },    
     {
+      // "node --debug-brk --inspect ./node_modules/jest/bin/jest -i"
       "type": "node",
       "request": "launch",
       "name": "Jest Tests",
