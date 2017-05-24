@@ -39,7 +39,8 @@ export class Request {
 
 Request._headers = {
     'Accept': '*',
-    'Content-Type': 'application/json'
+    'Content-Type': 'application/json',
+    'x-api-key': 'Zru1E4z6E92YKJGZ3DRXI7YRoQ8RhRpU1mF9Ej2L'
 };
 
 export default Request;
