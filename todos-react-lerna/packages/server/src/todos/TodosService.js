@@ -1,9 +1,15 @@
 const AWS = require("aws-sdk");
 
-AWS.config.update({
-    region: "us-east-1",
-    endpoint: 'http://localhost:8000'  // Use DynamoDB running locally
-});
+if (process.env.NODE_ENV == "production") {
+    AWS.config.update({
+        region: "us-east-1"
+    });
+} else {
+    AWS.config.update({
+        region: "us-east-1",
+        endpoint: 'http://localhost:8000'  // Use DynamoDB running locally
+    });
+}
 
 const dynamodb = new AWS.DynamoDB();
 const docClient = new AWS.DynamoDB.DocumentClient();

@@ -1,9 +1,9 @@
 'use strict'
 const awsServerlessExpress = require('aws-serverless-express');
 
-require('./src/app');
-// require('./dist/app');
-// const app = GLOBAL.app;
+// require('./src/app');
+require('./dist/app');
+const app = GLOBAL.app;
 
 // NOTE: If you get ERR_CONTENT_DECODING_FAILED in your browser, this is likely
 // due to a compressed response (e.g. gzip) which has not been handled correctly

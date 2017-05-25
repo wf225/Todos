@@ -16,7 +16,8 @@
     "isomorphic-fetch": "^2.2.1"
   },
   "devDependencies": {
-    "jest": "^19.0.2"
+    "jest": "^19.0.2",
+    "serverless": "^1.13.2"
   },
   "scripts": {
     "start": "node src/app.local.js",

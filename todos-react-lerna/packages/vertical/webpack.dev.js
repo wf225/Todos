@@ -39,7 +39,8 @@ module.exports = {
         new webpack.DefinePlugin({
             'process.env': {
                 NODE_ENV: JSON.stringify('dev'), // '"prod"'
-                API_HOST: JSON.stringify('')
+                SERVICE_URL: JSON.stringify(''),
+                API_KEY: JSON.stringify('FJVaQEu2EY9ejShXc23s4UFH8NCa9534QzoiMWC8')
             }
         })
     ]

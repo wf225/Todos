@@ -1,6 +1,6 @@
 import fetch from 'isomorphic-fetch'
 
-let api_host = process.env.API_HOST;
+let api_host = process.env.SERVICE_URL;
 
 export class Request {
 
@@ -40,7 +40,7 @@ export class Request {
 Request._headers = {
     'Accept': '*',
     'Content-Type': 'application/json',
-    'x-api-key': 'Zru1E4z6E92YKJGZ3DRXI7YRoQ8RhRpU1mF9Ej2L'
+    'x-api-key': process.env.API_KEY
 };
 
 export default Request;

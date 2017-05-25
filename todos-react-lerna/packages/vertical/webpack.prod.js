@@ -38,7 +38,8 @@ module.exports = {
         new webpack.DefinePlugin({
             'process.env': {
                 NODE_ENV: JSON.stringify('production'),
-                API_HOST: JSON.stringify('https://kh2yo8xg01.execute-api.us-east-1.amazonaws.com/dev')
+                SERVICE_URL: JSON.stringify('https://0imk9zz7p1.execute-api.us-east-1.amazonaws.com/dev'),
+                API_KEY: JSON.stringify('FJVaQEu2EY9ejShXc23s4UFH8NCa9534QzoiMWC8')
             }
         }),
         new CopyWebpackPlugin([

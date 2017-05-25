@@ -16,7 +16,7 @@ fs.readdirSync('node_modules')
 
 module.exports = {
     entry: {
-        app: './src/app.js'
+        app: './src/app.local.js'
     },
     output: {
         path: path.resolve(__dirname, './dist'),
