@@ -15,13 +15,13 @@ app.set('port', port);
 require('./routes.js')(app);
 
 // 4. strat listen
-app.listen(port, () => {
-    console.log("Server listening on port %s", port);
-});
+// app.listen(port, () => {
+//     console.log("Server listening on port %s", port);
+// });
 
 // OR:
-// const server = http.createServer(app);
-// const hostname = '127.0.0.1';
-// server.listen(port, hostname, () => {
-//   console.log("Server listening on port %s", port);
-// });
+const server = http.createServer(app);
+const hostname = '127.0.0.1';
+server.listen(port, hostname, () => {
+  console.log("Server listening on port %s", port);
+});

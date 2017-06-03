@@ -15,7 +15,7 @@ module.exports = function (app) {
   });
 
   app.get('/api/test/0', (req, res) => {
-    res.json(req.apiGateway.event)
+    res.json(req.apiGateway.event);
   })
 
   app.get('/api/test/1', function (req, res) {
@@ -37,5 +37,12 @@ module.exports = function (app) {
   app.get('/api/test/5', function (req, res) {
     res.status(201).end(JSON.stringify(hello(5)));
   });
+
+  app.get('/api/test/:id/name/:name', (req, res) => {
+    let id = req.params.id;
+    let name = req.params.name;
+    // res.json({ id, name });
+    res.json(req.apiGateway.event);
+  })
 
 };
