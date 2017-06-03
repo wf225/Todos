@@ -21,7 +21,7 @@
     "serverless": "^1.13.2"
   },
   "scripts": {
-    "start": "pm2 start src/app.local.js",
+    "start": "pm2 start src/app.local.js --watch",
     "build": "npm run webpack-prod",
     "build-dev": "npm run webpack-dev",
     "package": "serverless package",

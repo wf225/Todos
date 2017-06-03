@@ -59,6 +59,21 @@ functions:
       TABLE_NAME: Todos
     events:
       - http:
+          path: api/test/{id}
+          method: get
+          request:
+            parameters:
+              paths:
+                id: true
+      - http:
+          path: api/test/{id}/name/{name}
+          method: get
+          request:
+            parameters:
+              paths:
+                id: true
+                name: true
+      - http:
           path: api/todo
           method: post
           cors: true
