@@ -21,7 +21,8 @@ var params = {
         "info": {
             "plot": "Nothing happens at all.",
             "rating": 0
-        }
+        },
+        "others": { }
     }
 };
 

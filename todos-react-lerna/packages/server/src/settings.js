@@ -7,11 +7,11 @@ const defaultSettings = {
       port: 994,
       secure: true, // use TLS
       auth: {
-        user: 'user@126.com',
-        pass: 'pass'
+        user: 'wf225@126.com',
+        pass: 'Wf200808'
       }
     },
-    sender: 'user@126.com',
+    sender: 'wf225@126.com',
     receivers: []
   }
 }

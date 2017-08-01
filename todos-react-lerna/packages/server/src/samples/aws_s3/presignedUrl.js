@@ -1,26 +1,53 @@
 const AWS = require("aws-sdk");
-const S3Client = require('aws-sdk/clients/s3');
+const mime = require('mime-types');
 
 var config = {
   region: "us-east-1",
-  version: "2006-03-01"
+  version: "2006-03-01",
+  signatureVersion: 'v4'
+  // accessKeyId: "AKIAIXGHSFHOYL7FWJFQ",
+  // secretAccessKey: "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"
 };
 
-var s3 = new S3Client(config)
-var bucket = 'wubil-todos-deploy';
-var key = 'public/index.html';
+var s3 = new AWS.S3(config)
+var bucket = 'webarx-extension-service-snapshot-assets';
+var key = 'extension-assets/Hello Lambda/viewer.1.js';
 
 // Pre-signing a getObject operation (synchronously)
-var params = { Bucket: bucket, Key: key, Expires: 60 }; // expires in 60 seconds
+var params = { Bucket: bucket, Key: key }; // expires in 60 seconds
+
+var url = s3.headObject(params, (err, data) => {
+  console.log(err);
+  console.log(data);
+});
+
 var url = s3.getSignedUrl('getObject', params);
 console.log('The get URL is', url);
 
 // Pre-signing a putObject (asynchronously)
 // NOTE: the ContentType is necessary
-var params = { Bucket: bucket, Key: "public/hello.txt", ContentType: "text/plain" };
-s3.getSignedUrl('putObject', params, function (err, url) {
-  console.log('The put URL is', url);
+var params = { Bucket: bucket, Key: "public/hello.txt" };
+s3.getObject(params, function (err, data) {
+  if (err) {
+    console.log(err);
+    return err;
+  }
+  // No error happened
+  // Convert Body from a Buffer to a String
+  let objectData = data.Body.toString('utf-8'); // Use the encoding necessary
+  console.log(objectData);
 });
+
+// ContentType is necessary.
+let contentType = mime.lookup('file.html');
+console.log(contentType);
+
+params = { Bucket: bucket, Key: "public2/hello.1.js", ContentType: "application/javascript"}; //
+// s3.getSignedUrl('putObject', params, function (err, url) {
+//   console.log('The put URL is', url);
+// });
+url = s3.getSignedUrl('putObject', params);
+console.log('The put URL is', url);
 
 
 // Presiging post data with a known key

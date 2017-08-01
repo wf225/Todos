@@ -156,10 +156,11 @@ functions:
 #         ProvisionedThroughput:
 #           ReadCapacityUnits: 10
 #           WriteCapacityUnits: 10
-#     # S3Bucket:
-#     #   Type: AWS::S3::Bucket
-#     #   Properties:
-#     #     BucketName: wubil-todos-deploy
+    # S3Bucket:
+    #   Type: AWS::S3::Bucket
+    #   Properties:
+    #     BucketName: <your_bucket_name>
+    #     AccessControl: PublicRead
 #   Outputs:
 #       NewOutput:
 #         Description: "Description for the output"

@@ -6,7 +6,7 @@
   "author": "Bill Wu",
   "license": "ISC",
   "dependencies": {
-    "aws-sdk": "^2.48.0",
+    "aws-sdk": "^2.87.0",
     "aws-serverless-express": "^3.0.0",
     "body-parser": "^1.17.1",
     "compression": "^1.6.2",
@@ -14,14 +14,17 @@
     "expose-loader": "^0.7.3",
     "express": "^4.15.2",
     "isomorphic-fetch": "^2.2.1",
-    "nodemailer": "^4.0.1"
+    "jsonpatch": "^3.0.1",
+    "jsonschema": "^1.1.1",
+    "nodemailer": "^4.0.1",
+    "semver": "^5.3.0"
   },
   "devDependencies": {
     "jest": "^19.0.2",
     "serverless": "^1.13.2"
   },
   "scripts": {
-    "start": "pm2 start src/app.local.js --watch",
+    "stop": "pm2 stop app.local",
     "build": "npm run webpack-prod",
     "build-dev": "npm run webpack-dev",
     "package": "serverless package",
