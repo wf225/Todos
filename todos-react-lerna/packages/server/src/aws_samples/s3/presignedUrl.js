@@ -5,8 +5,6 @@ var config = {
   region: "us-east-1",
   version: "2006-03-01",
   signatureVersion: 'v4'
-  // accessKeyId: "AKIAIXGHSFHOYL7FWJFQ",
-  // secretAccessKey: "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"
 };
 
 var s3 = new AWS.S3(config)
