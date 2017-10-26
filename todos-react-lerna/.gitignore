@@ -1,16 +1,15 @@
 # dependencies
-/node_modules
-/node_modules_001
+node_modules
 
 # testing
-/coverage
+coverage
 /__tests__/__snapshots__/
 
 # production demo
-/dist
+dist
 
 # production lib
-/lib
+lib
 
 # misc
 .DS_Store
